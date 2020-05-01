@@ -1,5 +1,3 @@
-package com.company;
-
 import java.util.Scanner;
 
 //ciekawy projekt do podpatrzenia https://www.journaldev.com/2315/java-json-example

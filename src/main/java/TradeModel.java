@@ -1,5 +1,3 @@
-package com.company;
-
 public class TradeModel {
     public double amount;
     public double rate;

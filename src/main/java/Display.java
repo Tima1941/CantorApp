@@ -1,5 +1,3 @@
-package com.company;
-
 import java.io.IOException;
 
 public class Display {
@@ -37,7 +35,7 @@ public class Display {
         user.setUserId();
         System.out.print(user);
 
-        helper.saveUserInDatabase();
+        helper.saveUserInDatabase(String.valueOf(user));
     }
 
     public void displayTransactionMenu(){

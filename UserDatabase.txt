@@ -1,0 +1,8 @@
+
+********** User Details **********
+Login: null
+Name: null
+Surname: null
+Email Address: null
+User ID: null
+*****************************

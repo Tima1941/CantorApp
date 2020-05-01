@@ -1,11 +1,7 @@
-package com.company;
-
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import static com.company.Display.helper;
-import static com.company.Display.user;
 
 public class Helper {
     public static TradeModel tradeModel = new TradeModel();
@@ -123,23 +119,23 @@ public class Helper {
     //todo pobieranie kursów ze strony internetowej
 
     public void saveTransaction () throws IOException {
-        FileWriter fileWriter = new FileWriter("transaction.txt", true);
+        FileWriter fileWriter = new FileWriter("src/main/resources/transaction.txt", true);
         PrintWriter printWriter = new PrintWriter(fileWriter);
 
         String tradeContent =
-                "\n|\tTradeDate: " + helper.getTradeDate() +
-                        "|\tCurrency1: " + helper.getCurrency1() +
-                        "|\tCurrency2: " + helper.getCurrency2() +
-                        "|\tAmount: " + helper.getAmount() +
-                        "|\tRate: " + helper.getRate() +
-                        "|\tValue: " + helper.getCalculate();
+                "\n|\tTradeDate: " + getTradeDate() +
+                        "|\tCurrency1: " + getCurrency1() +
+                        "|\tCurrency2: " + getCurrency2() +
+                        "|\tAmount: " + getAmount() +
+                        "|\tRate: " + getRate() +
+                        "|\tValue: " + getCalculate();
         printWriter.print(tradeContent);
         printWriter.close();
     }
 
     public void readData (){
         try {
-            File myObj = new File("transaction.txt");
+            File myObj = new File("src/main/resources/transaction.txt");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
@@ -152,8 +148,8 @@ public class Helper {
         }
     }
 
-    public void saveUserInDatabase() throws IOException {
-        FileWriter fileWriter = new FileWriter("UserDatabase.txt", true);
+    public void saveUserInDatabase(String user) throws IOException {
+        FileWriter fileWriter = new FileWriter("src/main/resources/UserDatabase.txt", true);
         PrintWriter printWriter = new PrintWriter(fileWriter);
         printWriter.print(user);
         printWriter.close();
@@ -161,7 +157,7 @@ public class Helper {
 
     public void readUserDatabaseFile() {
         try {
-            File myObj = new File("UserDatabase.txt");
+            File myObj = new File("src/main/resources/UserDatabase.txt");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
