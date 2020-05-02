@@ -61,11 +61,11 @@ public class Display {
         System.out.println("\n********** Transaction data **********");
         String tradeContent =
                 "TradeDate: " + helper.getTradeDate() +
-                        "\nCurrency1: " + helper.getCurrency1() +
-                        "\nCurrency2: " + helper.getCurrency2() +
-                        "\nAmount: " + helper.getAmount() +
-                        "\nRate: " + helper.getRate() +
-                        "\nValue: " + helper.getCalculate();
+                        "\nCurrency1:\t" + helper.getCurrency1() +
+                        "\nCurrency2:\t" + helper.getCurrency2() +
+                        "\nAmount:\t" + helper.getAmount() +
+                        "\nRate:\t" + helper.getRate() +
+                        "\nValue:\t" + helper.getCalculate();
         System.out.println(tradeContent);
         System.out.print("************************************\n");
 
@@ -76,10 +76,10 @@ public class Display {
         System.out.println("\n********** User data **********");
         String userContent =
                 "Login: " + user.getUserLogin() +
-                        "\nUser Name: " + user.getUserName() +
-                        "\nUser Surname: " + user.getUserSurname() +
-                        "\nEmail Address: " + user.getEmailAddress() +
-                        "\nUser ID: " + user.getUserId();
+                        "\nUser Name:\t" + user.getUserName() +
+                        "\nUser Surname:\t" + user.getUserSurname() +
+                        "\nEmail Address:\t" + user.getEmailAddress() +
+                        "\nUser ID:\t" + user.getUserId();
         System.out.println(userContent);
         System.out.print("************************************\n");
 

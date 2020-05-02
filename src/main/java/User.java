@@ -58,10 +58,10 @@ public class User {
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("\nLogin: " + getUserLogin());
-        sb.append(", Name: " + getUserName());
-        sb.append(", Surname: " + getUserSurname());
-        sb.append(", Email Address: " + getEmailAddress());
-        sb.append(", User ID: " + getUserId());
+        sb.append(",\tName: " + getUserName());
+        sb.append(",\tSurname: " + getUserSurname());
+        sb.append(",\tEmail Address: " + getEmailAddress());
+        sb.append(",\tUser ID: " + getUserId());
         return sb.toString();
     }
 }
