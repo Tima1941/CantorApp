@@ -1,50 +1,40 @@
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.Scanner;
 
 public class Helper {
     public static TradeModel tradeModel = new TradeModel();
     public static Date date = new Date();
 
     public double setRate () {
-        switch (getCurrencyPair()) {
-            case "EURUSD":
-                tradeModel.rate = (float) 1.08;
-                break;
-            case "EURGBP":
-                tradeModel.rate = (float) 0.88;
-                break;
-            case "EURPLN":
-                tradeModel.rate = (float) 4.55;
-                break;
-            case "USDEUR":
-                tradeModel.rate = (float) 0.93;
-                break;
-            case "USDGBP":
-                tradeModel.rate = (float) 0.81;
-                break;
-            case "USDPLN":
-                tradeModel.rate = (float) 4.21;
-                break;
-            case "PLNEUR":
-                tradeModel.rate = (float) 0.22;
-                break;
-            case "PLNUSD":
-                tradeModel.rate = (float) 0.24;
-                break;
-            case "GBPEUR":
-                tradeModel.rate = (float) 1.13;
-                break;
-            case "GBPUSD":
-                tradeModel.rate = (float) 1.23;
-                break;
-            case "GBPPLN":
-                tradeModel.rate = (float) 5.13;
-                break;
-            default:
-                System.out.print("Wrong currencies, enter again \n");
-        };
+        String currencyPair = getCurrencyPair();
+        if ("EURUSD".equals(currencyPair)) {
+            tradeModel.rate = (float) 1.08;
+        } else if ("EURGBP".equals(currencyPair)) {
+            tradeModel.rate = (float) 0.88;
+        } else if ("EURPLN".equals(currencyPair)) {
+            tradeModel.rate = (float) 4.55;
+        } else if ("USDEUR".equals(currencyPair)) {
+            tradeModel.rate = (float) 0.93;
+        } else if ("USDGBP".equals(currencyPair)) {
+            tradeModel.rate = (float) 0.81;
+        } else if ("USDPLN".equals(currencyPair)) {
+            tradeModel.rate = (float) 4.21;
+        } else if ("PLNEUR".equals(currencyPair)) {
+            tradeModel.rate = (float) 0.22;
+        } else if ("PLNUSD".equals(currencyPair)) {
+            tradeModel.rate = (float) 0.24;
+        } else if ("GBPEUR".equals(currencyPair)) {
+            tradeModel.rate = (float) 1.13;
+        } else if ("GBPUSD".equals(currencyPair)) {
+            tradeModel.rate = (float) 1.23;
+        } else if ("GBPPLN".equals(currencyPair)) {
+            tradeModel.rate = (float) 5.13;
+        } else {
+            System.out.print("Wrong currencies, enter again \n");
+        }
         return tradeModel.rate;
     }
 
@@ -123,12 +113,12 @@ public class Helper {
         PrintWriter printWriter = new PrintWriter(fileWriter);
 
         String tradeContent =
-                "\n|\tTradeDate: " + getTradeDate() +
-                        "|\tCurrency1: " + getCurrency1() +
-                        "|\tCurrency2: " + getCurrency2() +
-                        "|\tAmount: " + getAmount() +
-                        "|\tRate: " + getRate() +
-                        "|\tValue: " + getCalculate();
+                "\nTradeDate: " + getTradeDate() +
+                        ",\tCurrency1: " + getCurrency1() +
+                        ",\tCurrency2: " + getCurrency2() +
+                        ",\tAmount: " + getAmount() +
+                        ",\tRate: " + getRate() +
+                        ",\tValue: " + getCalculate();
         printWriter.print(tradeContent);
         printWriter.close();
     }

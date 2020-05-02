@@ -33,12 +33,9 @@ public class Display {
         user.setEmailAddress();
 
         user.setUserId();
-        System.out.print(user);
-
-        helper.saveUserInDatabase(String.valueOf(user));
     }
 
-    public void displayTransactionMenu(){
+    public void displayTransactionPanel(){
         System.out.print("\n------------------------------------\n");
         System.out.print("\t\tTransaction Panel");
         System.out.print("\n------------------------------------\n");
@@ -63,16 +60,33 @@ public class Display {
     public void displayTrade () throws IOException {
         System.out.println("\n********** Transaction data **********");
         String tradeContent =
-                "|TradeDate: " + helper.getTradeDate() +
-                        "\t|Currency1: " + helper.getCurrency1() +
-                        "\t|Currency2: " + helper.getCurrency2() +
-                        "\t|Amount: " + helper.getAmount() +
-                        "\t|Rate: " + helper.getRate() +
-                        "\t|Value: " + helper.getCalculate();
+                "TradeDate: " + helper.getTradeDate() +
+                        "\nCurrency1: " + helper.getCurrency1() +
+                        "\nCurrency2: " + helper.getCurrency2() +
+                        "\nAmount: " + helper.getAmount() +
+                        "\nRate: " + helper.getRate() +
+                        "\nValue: " + helper.getCalculate();
         System.out.println(tradeContent);
         System.out.print("************************************\n");
+
         helper.saveTransaction();
     }
+
+    public void displayUser () throws IOException {
+        System.out.println("\n********** User data **********");
+        String userContent =
+                "Login: " + user.getUserLogin() +
+                        "\nUser Name: " + user.getUserName() +
+                        "\nUser Surname: " + user.getUserSurname() +
+                        "\nEmail Address: " + user.getEmailAddress() +
+                        "\nUser ID: " + user.getUserId();
+        System.out.println(userContent);
+        System.out.print("************************************\n");
+
+        helper.saveUserInDatabase(String.valueOf(user));
+    }
+
+
 
     public void displayTransactionFile () {
         System.out.print("\n************************************\n");

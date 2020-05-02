@@ -57,13 +57,11 @@ public class User {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("\n********** User Details **********\n");
-        sb.append("Login: " + getUserLogin() + "\n");
-        sb.append("Name: " + getUserName() + "\n");
-        sb.append("Surname: " + getUserSurname() + "\n");
-        sb.append("Email Address: " + getEmailAddress() + "\n");
-        sb.append("User ID: " + getUserId() + "\n");
-        sb.append("*****************************\n");
+        sb.append("\nLogin: " + getUserLogin());
+        sb.append(", Name: " + getUserName());
+        sb.append(", Surname: " + getUserSurname());
+        sb.append(", Email Address: " + getEmailAddress());
+        sb.append(", User ID: " + getUserId());
         return sb.toString();
     }
 }
