@@ -1,8 +1,10 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Display {
     public static Helper helper = new Helper();
     public static User user = new User();
+    public static SortUser sortUser = new SortUser();
 
     public void displayMainMenu() {
         System.out.print("\n------------------------------------\n");
@@ -15,7 +17,7 @@ public class Display {
         System.out.print("0. Exit\n");
     }
 
-    public void displayRegisterMenu() throws IOException {
+    public void displayRegisterMenu() {
         System.out.print("\n------------------------------------\n");
         System.out.print("\t\tRegister Menu");
         System.out.print("\n------------------------------------\n");
@@ -73,20 +75,18 @@ public class Display {
     }
 
     public void displayUser () throws IOException {
-        System.out.println("\n********** User data **********");
+        System.out.println("\n********** Created User **********");
         String userContent =
-                "Login: " + user.getUserLogin() +
-                        "\nUser Name:\t" + user.getUserName() +
+                "Login:\t\t\t" + user.getUserLogin() +
+                        "\nUser Name:\t\t" + user.getUserName() +
                         "\nUser Surname:\t" + user.getUserSurname() +
                         "\nEmail Address:\t" + user.getEmailAddress() +
-                        "\nUser ID:\t" + user.getUserId();
+                        "\nUser ID:\t\t" + user.getUserId();
         System.out.println(userContent);
         System.out.print("************************************\n");
 
-        helper.saveUserInDatabase(String.valueOf(user));
+        helper.saveUserInDatabase(user);
     }
-
-
 
     public void displayTransactionFile () {
         System.out.print("\n************************************\n");
@@ -95,10 +95,18 @@ public class Display {
         helper.readData();
     }
 
-    public void displayUserDatabaseFile() {
+    public void displayUserDatabaseFile() throws IOException {
         System.out.print("\n************************************\n");
         System.out.print("\t\tUser Database file");
         System.out.print("\n************************************\n");
         helper.readUserDatabaseFile();
+    }
+
+    public void displayUserListSorted() throws IOException {
+        System.out.print("\n************************************\n");
+        System.out.print("\t\tUser List Sorted");
+        System.out.print("\n************************************\n");
+        helper.userListSorted();
+//        sortUser.sortedUser();
     }
 }

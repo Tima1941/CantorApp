@@ -1,13 +1,35 @@
+import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
+import static java.lang.Math.random;
 
 //ciekawy projekt do podpatrzenia https://www.journaldev.com/2315/java-json-example
+//listy artyhul https://www.geeksforgeeks.org/arrays-sort-in-java-with-examples/
+//stronka jak odczytac plik https://www.java67.com/2015/08/how-to-load-data-from-csv-file-in-java.html
 
 public class User {
+    String login;
     String name;
     String surname;
-    String login;
     String emailAddress;
     String userId;
+
+    public User(String login, String name, String surname, String emailAddress, String userId) {
+        this.login = login;
+        this.name = name;
+        this.surname = surname;
+        this.emailAddress = emailAddress;
+        this.userId = userId;
+    }
+
+    public User() {
+        this.login = getUserLogin();
+        this.name = getUserName();
+        this.surname = getUserSurname();
+        this.emailAddress = getEmailAddress();
+        this.userId = getUserId();
+    }
 
     public void setUserLogin () {
         Scanner scan = new Scanner(System.in);
@@ -46,7 +68,8 @@ public class User {
     }
 
     public void setUserId (){
-        String userIdGenerated = getUserName() + getUserSurname();
+        Random rand = new Random();
+        String userIdGenerated = String.valueOf(rand.nextInt(1000));
         this.userId = userIdGenerated;
     }
 
@@ -54,15 +77,8 @@ public class User {
         return userId;
     }
 
-    @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("\nLogin: " + getUserLogin());
-        sb.append(",\tName: " + getUserName());
-        sb.append(",\tSurname: " + getUserSurname());
-        sb.append(",\tEmail Address: " + getEmailAddress());
-        sb.append(",\tUser ID: " + getUserId());
-        return sb.toString();
+        return "Login: " + login + ", Name: " + name + ", Surname: " + surname + ", Email Address: " + emailAddress + ", User ID: " + userId;
     }
 }
 //todo add password function / improve user id generation / make class bigger

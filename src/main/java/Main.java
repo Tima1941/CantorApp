@@ -5,12 +5,13 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         //todo create "switch case" for app's menu
-        display.displayMainMenu();
-        display.displayTransactionPanel();
-        display.displayTrade();
-        display.displayTransactionFile();
+//        display.displayMainMenu();
+//        display.displayTransactionPanel();
+//        display.displayTrade();
+//        display.displayTransactionFile();
         display.displayRegisterMenu();
         display.displayUser();
         display.displayUserDatabaseFile();
+        display.displayUserListSorted();
     }
 }
