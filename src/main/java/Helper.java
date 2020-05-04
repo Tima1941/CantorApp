@@ -147,24 +147,9 @@ public class Helper {
         printWriter.close();
     }
 
-    public void readUserDatabaseFile() throws IOException {
-        try {
-            File myObj = new File("src/main/resources/UserDatabase.txt");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                System.out.println(data);
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
-
-    private static List<User> readUsersFromCSV(String fileName) throws IOException {
+    static List<User> readUserDatabaseFile() throws IOException {
+        Path pathToFile = Paths.get("src/main/resources/UserDatabase.txt");
         List<User> userList = new ArrayList<>();
-        Path pathToFile = Paths.get(fileName);
 
         // create an instance of BufferedReader using try with resource, Java 7 feature to close resources
         try (BufferedReader br = Files.newBufferedReader(pathToFile)) {
@@ -192,36 +177,20 @@ public class Helper {
     }
 
 
-    public void userListSorted () throws IOException {
-        List<User> usersList = readUsersFromCSV("src/main/resources/UserDatabase.txt");
+    public void userListSortedByUserId() throws IOException {
+        User [] userList = readUserDatabaseFile().toArray(new User[0]);
+        Arrays.sort(userList, new SortUser());
 
-        // let's print all the person read from CSV file
-        for (User i : usersList) {
-            System.out.println("Login: " + i.login + ", Name: " + i.name + ", Surname: " + i.surname +
-                    ", Email Address: " + i.emailAddress + ", User ID: " + i.userId);
-        }
-
-//        ------------------------------------------
-//        ArrayList<User> ar = new ArrayList<User>();
-//        System.out.println("Unsorted");
-//        for (int i=0; i<ar.size(); i++)
-//            System.out.println(ar.get(i));
-//
-//        Collections.sort(ar, new SortUser());
-//
-//        System.out.println("\nSorted by rollno");
-//        for (int i=0; i<ar.size(); i++)
-//            System.out.println(ar.get(i));
-
-//                ------------------------------------------
-
+        for (int i=0; i<userList.length; i++)
+            System.out.println(userList[i]);
     }
+
     private static User createUser(String[] metadata) {
         String login = metadata[0];
         String name = metadata[1];
         String surName = metadata[2];
         String emailAddress = metadata[3];
-        String userId = metadata[4];
+        int userId = Integer.parseInt(metadata[4]);
 
         // create and return user of this metadata
         return new User(login, name, surName, emailAddress, userId);

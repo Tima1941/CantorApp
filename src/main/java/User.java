@@ -1,8 +1,5 @@
-import java.util.Comparator;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import static java.lang.Math.random;
 
 //ciekawy projekt do podpatrzenia https://www.journaldev.com/2315/java-json-example
 //listy artyhul https://www.geeksforgeeks.org/arrays-sort-in-java-with-examples/
@@ -13,9 +10,9 @@ public class User {
     String name;
     String surname;
     String emailAddress;
-    String userId;
+    int userId;
 
-    public User(String login, String name, String surname, String emailAddress, String userId) {
+    public User(String login, String name, String surname, String emailAddress, int userId) {
         this.login = login;
         this.name = name;
         this.surname = surname;
@@ -69,11 +66,11 @@ public class User {
 
     public void setUserId (){
         Random rand = new Random();
-        String userIdGenerated = String.valueOf(rand.nextInt(1000));
+        int userIdGenerated = rand.nextInt(1000);
         this.userId = userIdGenerated;
     }
 
-    public String getUserId (){
+    public int getUserId (){
         return userId;
     }
 

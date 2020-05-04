@@ -1,10 +1,9 @@
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 public class Display {
     public static Helper helper = new Helper();
     public static User user = new User();
-    public static SortUser sortUser = new SortUser();
 
     public void displayMainMenu() {
         System.out.print("\n------------------------------------\n");
@@ -99,14 +98,17 @@ public class Display {
         System.out.print("\n************************************\n");
         System.out.print("\t\tUser Database file");
         System.out.print("\n************************************\n");
-        helper.readUserDatabaseFile();
+        List<User> usersList = helper.readUserDatabaseFile();
+        for (User i : usersList) {
+            System.out.println("Login: " + i.login + ", Name: " + i.name + ", Surname: " + i.surname +
+                    ", Email Address: " + i.emailAddress + ", User ID: " + i.userId);
+        }
     }
 
-    public void displayUserListSorted() throws IOException {
+    public void displayUserListSortedByUserId() throws IOException {
         System.out.print("\n************************************\n");
-        System.out.print("\t\tUser List Sorted");
+        System.out.print("\t\tUser List Sorted by User ID");
         System.out.print("\n************************************\n");
-        helper.userListSorted();
-//        sortUser.sortedUser();
+        helper.userListSortedByUserId();
     }
 }
