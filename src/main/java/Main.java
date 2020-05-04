@@ -14,6 +14,8 @@ public class Main {
         display.displayRegisterMenu();
         display.displayUser();
         display.displayUserDatabaseFile();
+        display.displayUserListSortedByLogin();
+        display.displayUserListSortedByName();
         display.displayUserListSortedByUserId();
     }
 }

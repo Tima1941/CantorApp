@@ -176,13 +176,31 @@ public class Helper {
         return userList;
     }
 
-
     public void userListSortedByUserId() throws IOException {
-        User [] userList = readUserDatabaseFile().toArray(new User[0]);
-        Arrays.sort(userList, new SortUser());
+        List<User> userId = readUserDatabaseFile();
+        userId.sort( Comparator.comparing(user -> user.userId) );
+        for (User i : userId) {
+            System.out.println("Login: " + i.login + ", Name: " + i.name + ", Surname: " + i.surname +
+                    ", Email Address: " + i.emailAddress + ", User ID: " + i.userId);
+        }
+    }
 
-        for (int i=0; i<userList.length; i++)
-            System.out.println(userList[i]);
+    public void userListSortedByUserName() throws IOException {
+        List<User> userName = readUserDatabaseFile();
+        userName.sort( Comparator.comparing(user -> user.name) );
+        for (User i : userName) {
+            System.out.println("Login: " + i.login + ", Name: " + i.name + ", Surname: " + i.surname +
+                    ", Email Address: " + i.emailAddress + ", User ID: " + i.userId);
+        }
+    }
+
+    public void userListSortedByLogin() throws IOException {
+        List<User> userLogin = readUserDatabaseFile();
+        userLogin.sort(Comparator.comparing(user -> user.login));
+        for (User i : userLogin) {
+            System.out.println("Login: " + i.login + ", Name: " + i.name + ", Surname: " + i.surname +
+                    ", Email Address: " + i.emailAddress + ", User ID: " + i.userId);
+        }
     }
 
     private static User createUser(String[] metadata) {

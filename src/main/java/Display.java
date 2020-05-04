@@ -111,4 +111,18 @@ public class Display {
         System.out.print("\n************************************\n");
         helper.userListSortedByUserId();
     }
+
+    public void displayUserListSortedByName() throws IOException {
+        System.out.print("\n************************************\n");
+        System.out.print("\t\tUser List Sorted by Name");
+        System.out.print("\n************************************\n");
+        helper.userListSortedByUserName();
+    }
+
+    public void displayUserListSortedByLogin() throws IOException {
+        System.out.print("\n************************************\n");
+        System.out.print("\t\tUser List Sorted by Login");
+        System.out.print("\n************************************\n");
+        helper.userListSortedByLogin();
+    }
 }

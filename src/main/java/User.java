@@ -11,6 +11,8 @@ public class User {
     String surname;
     String emailAddress;
     int userId;
+    //todo add user date creation
+    //todo add use function (cantor worker/boss/client)
 
     public User(String login, String name, String surname, String emailAddress, int userId) {
         this.login = login;
