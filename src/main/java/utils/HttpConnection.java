@@ -3,30 +3,26 @@ package utils;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class Http {
+//stronki z ktorych korzystalem
+//        https://exchangeratesapi.io/
+//        https://api.exchangeratesapi.io/latest?symbols=USD,GBP
 
-    public String connection () throws IOException {
-        // Setting URL
-        String url_str = "https://api.exchangeratesapi.io/latest?symbols=USD,GBP";
+public class HttpConnection {
 
-// Making Request
-        URL url = new URL(url_str);
+    public void connection () throws IOException {
+        URL url = new URL(System.getProperty("rates.http.api"));
         HttpURLConnection request = (HttpURLConnection) url.openConnection();
         request.connect();
 
-// Convert to JSON
         JsonParser jp = new JsonParser();
         JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
         JsonObject jsonobj = root.getAsJsonObject();
-
-// Accessing object
-        String req_result = jsonobj.get("result").getAsString();
-        return req_result;
+//        String req_result = jsonobj.toString();
+        String req_result = jsonobj.get("rates").toString();
+        System.out.println(req_result);
     }
 }

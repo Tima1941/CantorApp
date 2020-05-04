@@ -2,7 +2,6 @@ import utils.Display;
 import utils.ConfigurationLoader;
 import java.io.IOException;
 
-
 public class CantorApp {
     public static Display display = new Display();
     public static ConfigurationLoader configurationLoader = new ConfigurationLoader();
@@ -23,6 +22,6 @@ public class CantorApp {
 //        display.displayUserListSortedByLogin();
 //        display.displayUserListSortedByName();
         display.displayUserListSortedByUserId();
-//        display.displayTest();
+        display.displayTest();
     }
 }

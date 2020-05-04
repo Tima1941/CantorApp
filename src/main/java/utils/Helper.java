@@ -2,7 +2,6 @@ package utils;
 
 import model.Trade;
 import model.User;
-
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,9 +13,7 @@ import java.util.*;
 public class Helper {
     public static Trade tradeModel = new Trade();
     public static Date date = new Date();
-    public static Http http = new Http();
-//    private static String usersDatabase = System.getProperty("users.database");
-//    private static String transactionsDatabase = System.getProperty("transactions.database");
+    public static HttpConnection http = new HttpConnection();
 
     public double setRate () {
         String currencyPair = getCurrencyPair();
@@ -52,9 +49,8 @@ public class Helper {
         return tradeModel.rate;
     }
 
-    public String getFakeRate () throws IOException {
-
-        return http.connection();
+    public void getFakeRate () throws IOException {
+        http.connection();
     }
 
     public void setCurrencyPair (String ccy1, String ccy2) {
