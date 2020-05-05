@@ -67,7 +67,7 @@ public class Display {
         if (helper.loginChecker(user.login, user.password) == true) {
             System.out.println("Login accepted");
         } else {
-            System.out.println("User not found");
+            System.out.println("Wrong login/password");
         }
 
         return helper.loginChecker(user.login, user.password);
@@ -134,10 +134,7 @@ public class Display {
         System.out.print("\n************************************\n");
     }
 
-    public void displayUserMenu() throws IOException {
-        boolean userAccess = displayLogin();
-
-        if (userAccess == true) {
+    public void displayUserMenu() {
             System.out.print("\n************************************\n");
             System.out.print("\t\t\tUser Menu");
             System.out.print("\n************************************\n");
@@ -149,11 +146,28 @@ public class Display {
             System.out.print("\n5. Display Users' sorted by Login");
             System.out.print("\n6. Display Users' sorted by Name");
             System.out.print("\n7. Display Users' sorted by User ID");
-            System.out.print("\n9. <- Back Menu");
+            System.out.print("\n0. <- Back Menu");
             System.out.print("\n************************************\n");
-        } else {
-            System.out.println("\nUser: " + user.login + " doesn't have an access to User Menu");
-        }
+
+//        boolean userAccess = displayLogin();
+//
+//        if (userAccess == true) {
+//            System.out.print("\n************************************\n");
+//            System.out.print("\t\t\tUser Menu");
+//            System.out.print("\n************************************\n");
+//            System.out.print("\tWelcome: " + user.login);
+//            System.out.print("\n1. Check rates");
+//            System.out.print("\n2. Transaction");
+//            System.out.print("\n3. Display Transaction's Database");
+//            System.out.print("\n4. Display Users' Database");
+//            System.out.print("\n5. Display Users' sorted by Login");
+//            System.out.print("\n6. Display Users' sorted by Name");
+//            System.out.print("\n7. Display Users' sorted by User ID");
+//            System.out.print("\n9. <- Back Menu");
+//            System.out.print("\n************************************\n");
+//        } else {
+//            System.out.println("\nUser: " + user.login + " doesn't have an access to User Menu");
+//        }
     }
 
 //    public void displayUser () {
