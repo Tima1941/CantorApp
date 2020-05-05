@@ -35,11 +35,6 @@ public class User {
         this.userId = getUserId();
     }
 
-//    public User(String userLogin, String userPassword) {
-//        this.login = userLogin;
-//        this.password = userPassword;
-//    }
-
     public void setUserLogin () {
         Scanner scan = new Scanner(System.in);
         this.login = scan.nextLine();
@@ -94,11 +89,6 @@ public class User {
     public int getUserId (){
         return userId;
     }
-
-//    public void UserLoginCreator(String login, String password) {
-//        this.login = login;
-//        this.password = password;
-//    }
 
     public String toString(){
         return "Login: " + login + ", Name: " + name + ", Surname: " + surname + ", Password: " + password + ", Email Address: " + emailAddress + ", User ID: " + userId;

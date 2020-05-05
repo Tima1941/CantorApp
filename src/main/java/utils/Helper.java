@@ -84,10 +84,7 @@ public class Helper {
         return tradeModel.value;
     }
 
-    //todo pobieranie kursów ze strony internetowej
-
     public void saveTransaction () throws IOException {
-//        FileWriter fileWriter = new FileWriter(transactionsDatabase, true);
         FileWriter fileWriter = new FileWriter(System.getProperty("transactions.database"), true);
         PrintWriter printWriter = new PrintWriter(fileWriter);
 
@@ -201,7 +198,7 @@ public class Helper {
         }
     }
 
-    public void userListSortedByLogin() throws IOException {
+    public void userListSortedByLogin() {
         List<User> userLogin = readUserDatabaseFile();
         userLogin.sort(Comparator.comparing(user -> user.login));
 
@@ -223,15 +220,6 @@ public class Helper {
         // create and return user of this metadata
         return new User(login, name, surname, password, emailAddress, userId);
     }
-
-//    public User createLoginUser(String userLogin, String userPassword) {
-//        String login = userLogin;
-//        String password = userPassword;
-//
-//        // create and return user of this metadata
-//        return new User(login, password);
-//    }
-
 }
 
 

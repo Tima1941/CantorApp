@@ -4,3 +4,7 @@ TradeDate: null,	Currency1: EUR,	Currency2: USD,	Amount: 567.0,	Rate: 1.0942,	Va
 TradeDate: 2020/05/05 00:50:14,	Currency1: EUR,	Currency2: USD,	Amount: 3145.0,	Rate: 1.0942,	Value: 3441.259
 TradeDate: 2020/05/05 14:59:56,	Currency1: EUR,	Currency2: USD,	Amount: 940.0,	Rate: 1.0942,	Value: 1028.548
 TradeDate: 2020/05/05 15:02:54,	Currency1: USD,	Currency2: GBP,	Amount: 456.0,	Rate: 0.8033083531,	Value: 366.3086090136
+TradeDate: 2020/05/05 15:20:39,	Currency1: EUR,	Currency2: USD,	Amount: 123.0,	Rate: 1.0942,	Value: 134.5866
+TradeDate: 2020/05/05 16:34:08,	Currency1: EUR,	Currency2: USD,	Amount: 345.0,	Rate: 1.0942,	Value: 377.499
+TradeDate: 2020/05/05 17:26:45,	Currency1: EUR,	Currency2: USD,	Amount: 555.5499877929688,	Rate: 1.0942,	Value: 607.8827966430664
+TradeDate: 2020/05/05 18:08:04,	Currency1: EUR,	Currency2: USD,	Amount: 23.0,	Rate: 1.0843,	Value: 24.9389

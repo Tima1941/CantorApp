@@ -17,13 +17,13 @@ public class Display {
         System.out.print("2. Login\n");
         System.out.print("3. Check rates\n");
         System.out.print("4. Transaction\n");
-        System.out.print("0. Exit\n");
-        System.out.print("************************************\n");
+        System.out.print("0. Exit");
+        System.out.print("\n************************************\n");
     }
 
-    public void displayRegisterMenu() throws IOException {
+    public void displayUserRegister() throws IOException {
         System.out.print("\n************************************\n");
-        System.out.print("\t\tRegister Menu");
+        System.out.print("\t\t\tRegister User");
         System.out.print("\n************************************\n");
 
         System.out.print("Enter User Login: ");
@@ -43,11 +43,19 @@ public class Display {
 
         user.setUserId();
         helper.saveUserInDatabase(user);
+
+        System.out.print("\n*********** Created User ***********\n");
+        System.out.print("Login:\t\t\t" + user.getUserLogin() +
+                "\nUser Name:\t\t" + user.getUserName() +
+                "\nUser Surname:\t" + user.getUserSurname() +
+                "\nEmail Address:\t" + user.getEmailAddress() +
+                "\nUser ID:\t\t" + user.getUserId());
+        System.out.print("\n************************************\n");
     }
 
-    public boolean displayLoginMenu() throws IOException {
+    public boolean displayLogin() {
         System.out.print("\n************************************\n");
-        System.out.print("\t\t\tLogin Menu");
+        System.out.print("\t\t\tLogin");
         System.out.print("\n************************************\n");
 
         System.out.print("Enter User Login: ");
@@ -65,41 +73,41 @@ public class Display {
         return helper.loginChecker(user.login, user.password);
     }
 
-    public void displayTrade () throws IOException {
-        System.out.println("\n********** Transaction data **********");
-        String tradeContent =
-                "TradeDate: " + helper.getTradeDate() +
-                        "\nCurrency1:\t" + helper.getCurrency1() +
-                        "\nCurrency2:\t" + helper.getCurrency2() +
-                        "\nAmount:\t" + helper.getAmount() +
-                        "\nRate:\t" + helper.getRate() +
-                        "\nValue:\t" + helper.getCalculate();
-        System.out.println(tradeContent);
-        System.out.print("************************************\n");
-
-        helper.saveTransaction();
-    }
+//    public void displayTrade () throws IOException {
+//        System.out.println("\n********** Transaction data **********");
+//        String tradeContent =
+//                "TradeDate: " + helper.getTradeDate() +
+//                        "\nCurrency1:\t" + helper.getCurrency1() +
+//                        "\nCurrency2:\t" + helper.getCurrency2() +
+//                        "\nAmount:\t" + helper.getAmount() +
+//                        "\nRate:\t" + helper.getRate() +
+//                        "\nValue:\t" + helper.getCalculate();
+//        System.out.println(tradeContent);
+//        System.out.print("************************************\n");
+//
+//        helper.saveTransaction();
+//    }
 
     public void displayCheckRates () throws IOException {
         System.out.print("\n************************************\n");
-        System.out.println("\n********** Check Rates Menu **********");
+        System.out.print("\t\t\tCheck Rates");
         System.out.print("\n************************************\n");
         helper.setTradeDate();
-        System.out.println("Today is: " + helper.getTradeDate());
+        System.out.print("Today is: " + helper.getTradeDate());
 
-        System.out.print("Enter currency1: ");
+        System.out.println("\nEnter currency1: ");
         helper.setCurrency1();
 
-        System.out.print("Enter currency2: ");
+        System.out.println("Enter currency2: ");
         helper.setCurrency2();
 
         helper.setRate(helper.getCurrency1(), helper.getCurrency2());
         System.out.println("Rate: " + helper.getRate());
     }
 
-    public void displayTransactionMenu() throws IOException {
+    public void displayTransaction() throws IOException {
         System.out.print("\n************************************\n");
-        System.out.print("\t\tTransaction Menu");
+        System.out.print("\t\t\tTransaction");
         System.out.print("\n************************************\n");
 
         System.out.print("Enter currency1: ");
@@ -108,52 +116,59 @@ public class Display {
         System.out.print("Enter currency2: ");
         helper.setCurrency2();
 
-        System.out.println("Enter amount: ");
+        System.out.print("Enter amount: ");
         helper.setAmount();
 
         helper.setRate(helper.getCurrency1(), helper.getCurrency2());
         helper.setCalculate(helper.getRate(), helper.getAmount());
         helper.setTradeDate();
+        helper.saveTransaction();
+
+        System.out.print("\n********* Transaction data *********\n");
+        System.out.print("TradeDate: " + helper.getTradeDate() +
+                        "\nCurrency1:\t" + helper.getCurrency1() +
+                        "\nCurrency2:\t" + helper.getCurrency2() +
+                        "\nAmount:\t" + helper.getAmount() +
+                        "\nRate:\t" + helper.getRate() +
+                        "\nValue:\t" + helper.getCalculate());
+        System.out.print("\n************************************\n");
     }
 
     public void displayUserMenu() throws IOException {
-        boolean userAccess = displayLoginMenu();
+        boolean userAccess = displayLogin();
 
         if (userAccess == true) {
             System.out.print("\n************************************\n");
-            System.out.print("\t\tUser Menu");
+            System.out.print("\t\t\tUser Menu");
             System.out.print("\n************************************\n");
-            System.out.println("\tWelcome: " + user.login);
-            displayTransactionMenu();
-            displayTrade();
-            displayTransactionFile();
-            displayUserDatabaseFile();
-            displayUserListSortedByLogin();
-            displayUserListSortedByName();
-            displayUserListSortedByUserId();
+            System.out.print("\tWelcome: " + user.login);
+            System.out.print("\n1. Check rates");
+            System.out.print("\n2. Transaction");
+            System.out.print("\n3. Display Transaction's Database");
+            System.out.print("\n4. Display Users' Database");
+            System.out.print("\n5. Display Users' sorted by Login");
+            System.out.print("\n6. Display Users' sorted by Name");
+            System.out.print("\n7. Display Users' sorted by User ID");
+            System.out.print("\n9. <- Back Menu");
+            System.out.print("\n************************************\n");
         } else {
-            System.out.println("User: " + user.login + " doesn't have an access to User Menu");
+            System.out.println("\nUser: " + user.login + " doesn't have an access to User Menu");
         }
     }
 
-    public void displayUser () throws IOException {
-        System.out.println("\n********** Created User **********");
-        String userContent =
-                "Login:\t\t\t" + user.getUserLogin() +
-                        "\nUser Name:\t\t" + user.getUserName() +
-                        "\nUser Surname:\t" + user.getUserSurname() +
-                        "\nUser Password:\t" + user.getUserPassword() +
-                        "\nEmail Address:\t" + user.getEmailAddress() +
-                        "\nUser ID:\t\t" + user.getUserId();
-        System.out.println(userContent);
-        System.out.print("************************************\n");
-
-        helper.saveUserInDatabase(user);
-    }
+//    public void displayUser () {
+//        System.out.print("\n*********** Created User ***********");
+//        System.out.print("Login:\t\t\t" + user.getUserLogin() +
+//                        "\nUser Name:\t\t" + user.getUserName() +
+//                        "\nUser Surname:\t" + user.getUserSurname() +
+//                        "\nEmail Address:\t" + user.getEmailAddress() +
+//                        "\nUser ID:\t\t" + user.getUserId());
+//        System.out.print("\n************************************\n");
+//    }
 
     public void displayTransactionFile () {
         System.out.print("\n************************************\n");
-        System.out.print("\t\tTransaction file");
+        System.out.print("\t\tTransaction Database file");
         System.out.print("\n************************************\n");
         helper.readData();
     }
