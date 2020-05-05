@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CantorAppProject.iml" filepath="$PROJECT_DIR$/CantorAppProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CantorApp.iml" filepath="$PROJECT_DIR$/CantorApp.iml" />
     </modules>
   </component>
 </project>

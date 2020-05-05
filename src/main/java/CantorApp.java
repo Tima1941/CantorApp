@@ -9,8 +9,8 @@ public class CantorApp {
 
     public static void main(String[] args) throws IOException {
         configurationLoader.loadProperties();
-
         int value;
+
         do
         {
             display.displayMainMenu();

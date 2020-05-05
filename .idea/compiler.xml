@@ -6,10 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="CantorAppProject" />
+        <module name="CantorApp" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="CantorApp" target="8" />
       <module name="CantorAppProject" target="8" />
     </bytecodeTargetLevel>
   </component>
