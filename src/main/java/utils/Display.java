@@ -2,8 +2,8 @@ package utils;
 
 import model.User;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Comparator;
 import java.util.List;
 
 public class Display {
@@ -11,20 +11,21 @@ public class Display {
     public static User user = new User();
 
     public void displayMainMenu() {
-        System.out.print("\n------------------------------------\n");
-        System.out.print("\t\t\tCantor");
-        System.out.print("\n------------------------------------\n");
+        System.out.print("\n************************************\n");
+        System.out.print("************   Cantor   ************");
+        System.out.print("\n************************************\n");
         System.out.print("1. Register\n");
-        System.out.print("2. Log in\n");
-        System.out.print("3. Check rates for currencies\n");
-        System.out.print("4. Calculate exchange\n");
+        System.out.print("2. Login\n");
+        System.out.print("3. Check rates\n");
+        System.out.print("4. Transaction\n");
         System.out.print("0. Exit\n");
+        System.out.print("************************************\n");
     }
 
-    public void displayRegisterMenu() {
-        System.out.print("\n------------------------------------\n");
+    public void displayRegisterMenu() throws IOException {
+        System.out.print("\n************************************\n");
         System.out.print("\t\tRegister Menu");
-        System.out.print("\n------------------------------------\n");
+        System.out.print("\n************************************\n");
 
         System.out.print("Enter User Login: ");
         user.setUserLogin();
@@ -35,32 +36,30 @@ public class Display {
         System.out.print("Enter User Surname: ");
         user.setUserSurname();
 
+        System.out.print("Enter User Password: ");
+        user.setUserPassword();
+
         System.out.print("Enter Email Address: ");
         user.setEmailAddress();
 
         user.setUserId();
+        helper.saveUserInDatabase(user);
     }
 
-    public void displayTransactionPanel(){
-        System.out.print("\n------------------------------------\n");
-        System.out.print("\t\tTransaction Panel");
-        System.out.print("\n------------------------------------\n");
+    public void displayLoginMenu() throws IOException {
+        System.out.print("\n************************************\n");
+        System.out.print("\t\t\tLogin Menu");
+        System.out.print("\n************************************\n");
 
-        helper.setTradeDate();
-        System.out.print("Transaction date: " + helper.getTradeDate() + "\n");
+        System.out.print("Enter User Login: ");
+        user.setUserLogin();
 
-        System.out.print("Provide currency1 (/EUR/USD/GBP/PLN): ");
-        helper.setCurrency1();
+        System.out.print("Enter User Password: ");
+        user.setUserPassword();
 
-        System.out.print("Provide currency2 (/EUR/USD/GBP/PLN): ");
-        helper.setCurrency2();
-        helper.setCurrencyPair(helper.getCurrency1(), helper.getCurrency2());
-
-        System.out.println("Provide amount: ");
-        helper.setAmount();
-
-        helper.setRate();
-        helper.setCalculate(helper.getRate(), helper.getAmount());
+//        helper.createLoginUser(user.login, user.password);
+        helper.loginMenu(user.login, user.password);
+//        System.out.println("\nlogin:" + user.login  + ", password: " + user.password + "\n");
     }
 
     public void displayTrade () throws IOException {
@@ -78,12 +77,49 @@ public class Display {
         helper.saveTransaction();
     }
 
+    public void displayCheckRates () throws IOException {
+        System.out.print("\n************************************\n");
+        System.out.println("\n********** Check Rates Menu **********");
+        System.out.print("\n************************************\n");
+        helper.setTradeDate();
+        System.out.println("Today is: " + helper.getTradeDate());
+
+        System.out.print("Enter currency1: ");
+        helper.setCurrency1();
+
+        System.out.print("Enter currency2: ");
+        helper.setCurrency2();
+
+        helper.setRate(helper.getCurrency1(), helper.getCurrency2());
+        System.out.println("Rate: " + helper.getRate());
+    }
+
+    public void displayTransactionPanel() throws IOException {
+        System.out.print("\n************************************\n");
+        System.out.print("\t\tTransaction Menu");
+        System.out.print("\n************************************\n");
+
+        System.out.print("Enter currency1: ");
+        helper.setCurrency1();
+
+        System.out.print("Enter currency2: ");
+        helper.setCurrency2();
+
+        System.out.println("Enter amount: ");
+        helper.setAmount();
+
+        helper.setRate(helper.getCurrency1(), helper.getCurrency2());
+        helper.setCalculate(helper.getRate(), helper.getAmount());
+        helper.setTradeDate();
+    }
+
     public void displayUser () throws IOException {
         System.out.println("\n********** Created User **********");
         String userContent =
                 "Login:\t\t\t" + user.getUserLogin() +
                         "\nUser Name:\t\t" + user.getUserName() +
                         "\nUser Surname:\t" + user.getUserSurname() +
+                        "\nUser Password:\t" + user.getUserPassword() +
                         "\nEmail Address:\t" + user.getEmailAddress() +
                         "\nUser ID:\t\t" + user.getUserId();
         System.out.println(userContent);
@@ -137,6 +173,6 @@ public class Display {
         System.out.print("\n************************************\n");
         System.out.print("\t\tTest");
         System.out.print("\n************************************\n");
-        helper.getFakeRate();
+        helper.test();
     }
 }

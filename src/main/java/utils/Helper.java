@@ -15,50 +15,17 @@ public class Helper {
     public static Date date = new Date();
     public static HttpConnection http = new HttpConnection();
 
-    public double setRate () {
-        String currencyPair = getCurrencyPair();
-        if ("EURUSD".equals(currencyPair)) {
-            tradeModel.rate = (float) 1.08;
-        } else if ("EURGBP".equals(currencyPair)) {
-            tradeModel.rate = (float) 0.88;
-        } else if ("EURPLN".equals(currencyPair)) {
-            tradeModel.rate = (float) 4.55;
-        } else if ("USDEUR".equals(currencyPair)) {
-            tradeModel.rate = (float) 0.93;
-        } else if ("USDGBP".equals(currencyPair)) {
-            tradeModel.rate = (float) 0.81;
-        } else if ("USDPLN".equals(currencyPair)) {
-            tradeModel.rate = (float) 4.21;
-        } else if ("PLNEUR".equals(currencyPair)) {
-            tradeModel.rate = (float) 0.22;
-        } else if ("PLNUSD".equals(currencyPair)) {
-            tradeModel.rate = (float) 0.24;
-        } else if ("GBPEUR".equals(currencyPair)) {
-            tradeModel.rate = (float) 1.13;
-        } else if ("GBPUSD".equals(currencyPair)) {
-            tradeModel.rate = (float) 1.23;
-        } else if ("GBPPLN".equals(currencyPair)) {
-            tradeModel.rate = (float) 5.13;
-        } else {
-            System.out.print("Wrong currencies, enter again \n");
-        }
-        return tradeModel.rate;
+    public void setRate (String currency1, String currency2) throws IOException {
+        tradeModel.rate = http.getRate(currency1, currency2);
     }
 
     public double getRate (){
         return tradeModel.rate;
     }
 
-    public void getFakeRate () throws IOException {
-        http.connection();
-    }
-
-    public void setCurrencyPair (String ccy1, String ccy2) {
-        tradeModel.currencyPair = ccy1 + ccy2;
-    }
-
-    public String getCurrencyPair (){
-        return tradeModel.currencyPair;
+    public void test() throws IOException {
+//        http.getRate( "USD", "PLN");
+//        System.out.println(http.getRate( "USD", "PLN"));
     }
 
     public void setAmount() {
@@ -138,7 +105,6 @@ public class Helper {
     public void readData (){
         try {
             File myObj = new File(System.getProperty("transactions.database"));
-//            File myObj = new File(transactionsDatabase);
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
@@ -152,12 +118,12 @@ public class Helper {
     }
 
     public void saveUserInDatabase(User user) throws IOException {
-//        FileWriter fileWriter = new FileWriter("src/main/resources/UsersDatabase.txt", true);
         FileWriter fileWriter = new FileWriter(System.getProperty("users.database"), true);
         PrintWriter printWriter = new PrintWriter(fileWriter);
-        printWriter.print(user.login + ", " + user.name + ", " + user.surname + ", " + user.emailAddress + ", " + user.userId + "\n");
+        printWriter.print(user.login + ", " + user.name + ", " + user.surname + ", " + user.password + ", " + user.emailAddress + ", " + user.userId + "\n");
         printWriter.close();
     }
+
 
     static List<User> readUserDatabaseFile() {
         Path pathToFile = Paths.get(System.getProperty("users.database"));
@@ -186,6 +152,32 @@ public class Helper {
                  { ioe.printStackTrace(); }
 
         return userList;
+    }
+
+    public boolean loginMenu (String inputLogin, String inputPass) {
+        Path pathToFile = Paths.get(System.getProperty("users.database"));
+        boolean login = false;
+
+        try (BufferedReader br = Files.newBufferedReader(pathToFile)) {
+            String line = br.readLine();
+
+            while (line != null) {
+                String[] attributes = line.split(", ");
+                User user = createUser(attributes);
+
+                if (user.login.equals(inputLogin) && user.password.equals(inputPass)) {
+                    System.out.print("\nLogin accepted\n");
+                    login = true;
+                    break;
+                }
+
+                line = br.readLine();
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        return login;
     }
 
     public void userListSortedByUserId() throws IOException {
@@ -224,13 +216,23 @@ public class Helper {
     private static User createUser(String[] metadata) {
         String login = metadata[0];
         String name = metadata[1];
-        String surName = metadata[2];
-        String emailAddress = metadata[3];
-        int userId = Integer.parseInt(metadata[4]);
+        String surname = metadata[2];
+        String password = metadata[3];
+        String emailAddress = metadata[4];
+        int userId = Integer.parseInt(metadata[5]);
 
         // create and return user of this metadata
-        return new User(login, name, surName, emailAddress, userId);
+        return new User(login, name, surname, password, emailAddress, userId);
     }
+
+//    public User createLoginUser(String userLogin, String userPassword) {
+//        String login = userLogin;
+//        String password = userPassword;
+//
+//        // create and return user of this metadata
+//        return new User(login, password);
+//    }
+
 }
 
 

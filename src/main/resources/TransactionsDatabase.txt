@@ -23,3 +23,25 @@ TradeDate: 2020/05/02 17:06:57,	Currency1: EUR,	Currency2: USD,	Amount: 8.0,	Rat
 TradeDate: 2020/05/02 17:08:52,	Currency1: EUR,	Currency2: USD,	Amount: 9.0,	Rate: 1.0800000429153442,	Value: 9.720000386238098
 TradeDate: 2020/05/02 17:14:01,	Currency1: EUR,	Currency2: USD,	Amount: 11.0,	Rate: 1.0800000429153442,	Value: 11.880000472068787
 TradeDate: 2020/05/02 17:14:37,	Currency1: EUR,	Currency2: USD,	Amount: 1.0,	Rate: 1.0800000429153442,	Value: 1.0800000429153442
+TradeDate: 2020/05/04 23:57:10,	Currency1: EUR,	Currency2: USD,	Amount: 100.0,	Rate: 1.0942,	Value: 109.42
+TradeDate: 2020/05/04 23:57:47,	Currency1: EUR,	Currency2: USD,	Amount: 100.0,	Rate: 1.0942,	Value: 109.42
+TradeDate: 2020/05/05 00:00:59,	Currency1: USD,	Currency2: PLN,	Amount: 111.0,	Rate: 4.1736428441,	Value: 463.2743556951
+TradeDate: 2020/05/05 00:04:33,	Currency1: USD,	Currency2: GBP,	Amount: 123.32099914550781,	Rate: 0.8033083531,	Value: 99.06478872622439
+TradeDate: 2020/05/05 00:05:15,	Currency1: USD,	Currency2: GBP,	Amount: 50.0,	Rate: 0.8033083531,	Value: 40.165417655
+TradeDate: 2020/05/05 00:14:26,	Currency1: USD,	Currency2: PLN,	Amount: 333.0,	Rate: 4.1736428441,	Value: 1389.8230670853
+TradeDate: 2020/05/05 00:28:15,	Currency1: USD,	Currency2: PLN,	Amount: 4.0,	Rate: 4.1736428441,	Value: 16.6945713764
+TradeDate: 2020/05/05 00:33:38,	Currency1: EUR,	Currency2: USD,	Amount: 100.0,	Rate: 1.0942,	Value: 109.42
+TradeDate: 2020/05/05 00:35:49,	Currency1: EUR,	Currency2: USD,	Amount: 43.0,	Rate: 1.0942,	Value: 47.0506
+TradeDate: 2020/05/05 00:39:07,	Currency1: EUR,	Currency2: USD,	Amount: 34.0,	Rate: 1.0942,	Value: 37.2028
+TradeDate: 2020/05/05 00:40:32,	Currency1: EUR,	Currency2: USD,	Amount: 123.20999908447266,	Rate: 1.0942,	Value: 134.81638099823
+TradeDate: 2020/05/05 00:41:54,	Currency1: EUR,	Currency2: USD,	Amount: 23.0,	Rate: 1.0942,	Value: 25.166600000000003
+TradeDate: 2020/05/05 00:46:37,	Currency1: EUR,	Currency2: USD,	Amount: 321.0,	Rate: 1.0942,	Value: 351.2382
+TradeDate: null,	Currency1: EUR,	Currency2: USD,	Amount: 567.0,	Rate: 1.0942,	Value: 620.4114000000001
+TradeDate: 2020/05/05 00:50:14,	Currency1: EUR,	Currency2: USD,	Amount: 3145.0,	Rate: 1.0942,	Value: 3441.259
+TradeDate: 2020/05/05 00:51:56,	Currency1: USD,	Currency2: EUR,	Amount: 23432.32421875,	Rate: 0.9139097057,	Value: 21415.028530624793
+TradeDate: 2020/05/05 00:54:14,	Currency1: EUR,	Currency2: USD,	Amount: 4325345.0,	Rate: 1.0942,	Value: 4732792.499
+TradeDate: 2020/05/05 01:05:02,	Currency1: EUR,	Currency2: USD,	Amount: 5.0,	Rate: 1.0942,	Value: 5.471
+TradeDate: 2020/05/05 01:06:08,	Currency1: EUR,	Currency2: USD,	Amount: 11.0,	Rate: 1.0942,	Value: 12.036200000000001
+TradeDate: 2020/05/05 01:06:08,	Currency1: USD,	Currency2: GBP,	Amount: 15.0,	Rate: 0.8033083531,	Value: 12.0496252965
+TradeDate: 2020/05/05 01:13:42,	Currency1: EUR,	Currency2: USD,	Amount: 3123.132080078125,	Rate: 1.0942,	Value: 3417.3311220214846
+TradeDate: 2020/05/05 01:58:46,	Currency1: EUR,	Currency2: USD,	Amount: 423.1199951171875,	Rate: 1.0942,	Value: 462.9778986572266

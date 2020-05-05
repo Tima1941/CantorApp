@@ -6,8 +6,8 @@ public class Trade {
     public double value;
     public String currency1;
     public String currency2;
-    public String currencyPair;
     public String tradeDate;
+    //dodaj user id, user name, user surname do danych tranzakcji
 
     public Trade(){
     }

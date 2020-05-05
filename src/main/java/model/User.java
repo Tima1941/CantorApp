@@ -12,14 +12,16 @@ public class User {
     public String name;
     public String surname;
     public String emailAddress;
+    public String password;
     public int userId;
     //todo add user date creation
     //todo add use function (cantor worker/boss/client)
 
-    public User(String login, String name, String surname, String emailAddress, int userId) {
+    public User(String login, String name, String surname, String password, String emailAddress, int userId) {
         this.login = login;
         this.name = name;
         this.surname = surname;
+        this.password = password;
         this.emailAddress = emailAddress;
         this.userId = userId;
     }
@@ -28,9 +30,15 @@ public class User {
         this.login = getUserLogin();
         this.name = getUserName();
         this.surname = getUserSurname();
+        this.password = getUserPassword();
         this.emailAddress = getEmailAddress();
         this.userId = getUserId();
     }
+
+//    public User(String userLogin, String userPassword) {
+//        this.login = userLogin;
+//        this.password = userPassword;
+//    }
 
     public void setUserLogin () {
         Scanner scan = new Scanner(System.in);
@@ -59,6 +67,15 @@ public class User {
         return surname;
     }
 
+    public void setUserPassword () {
+        Scanner scan = new Scanner(System.in);
+        this.password = scan.nextLine();
+    }
+
+    public String getUserPassword(){
+        return password;
+    }
+
     public void setEmailAddress (){
         Scanner scan = new Scanner(System.in);
         this.emailAddress = scan.nextLine();
@@ -78,8 +95,13 @@ public class User {
         return userId;
     }
 
+//    public void UserLoginCreator(String login, String password) {
+//        this.login = login;
+//        this.password = password;
+//    }
+
     public String toString(){
-        return "Login: " + login + ", Name: " + name + ", Surname: " + surname + ", Email Address: " + emailAddress + ", User ID: " + userId;
+        return "Login: " + login + ", Name: " + name + ", Surname: " + surname + ", Password: " + password + ", Email Address: " + emailAddress + ", User ID: " + userId;
     }
 }
 //todo add password function / improve user id generation / make class bigger

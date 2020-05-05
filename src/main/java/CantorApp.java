@@ -15,13 +15,15 @@ public class CantorApp {
 //        display.displayTransactionPanel();
 //        display.displayTrade();
 //        display.displayTransactionFile();
+//        display.displayCheckRates();
 
 //        display.displayRegisterMenu();
 //        display.displayUser();
 //        display.displayUserDatabaseFile();
 //        display.displayUserListSortedByLogin();
 //        display.displayUserListSortedByName();
-        display.displayUserListSortedByUserId();
-        display.displayTest();
+//        display.displayUserListSortedByUserId();
+        display.displayLoginMenu();
+//        display.displayTest();
     }
 }
