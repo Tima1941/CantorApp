@@ -2,7 +2,6 @@ package utils;
 
 import model.User;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -46,7 +45,7 @@ public class Display {
         helper.saveUserInDatabase(user);
     }
 
-    public void displayLoginMenu() throws IOException {
+    public boolean displayLoginMenu() throws IOException {
         System.out.print("\n************************************\n");
         System.out.print("\t\t\tLogin Menu");
         System.out.print("\n************************************\n");
@@ -57,9 +56,13 @@ public class Display {
         System.out.print("Enter User Password: ");
         user.setUserPassword();
 
-//        helper.createLoginUser(user.login, user.password);
-        helper.loginMenu(user.login, user.password);
-//        System.out.println("\nlogin:" + user.login  + ", password: " + user.password + "\n");
+        if (helper.loginChecker(user.login, user.password) == true) {
+            System.out.println("Login accepted");
+        } else {
+            System.out.println("User not found");
+        }
+
+        return helper.loginChecker(user.login, user.password);
     }
 
     public void displayTrade () throws IOException {
@@ -94,7 +97,7 @@ public class Display {
         System.out.println("Rate: " + helper.getRate());
     }
 
-    public void displayTransactionPanel() throws IOException {
+    public void displayTransactionMenu() throws IOException {
         System.out.print("\n************************************\n");
         System.out.print("\t\tTransaction Menu");
         System.out.print("\n************************************\n");
@@ -111,6 +114,26 @@ public class Display {
         helper.setRate(helper.getCurrency1(), helper.getCurrency2());
         helper.setCalculate(helper.getRate(), helper.getAmount());
         helper.setTradeDate();
+    }
+
+    public void displayUserMenu() throws IOException {
+        boolean userAccess = displayLoginMenu();
+
+        if (userAccess == true) {
+            System.out.print("\n************************************\n");
+            System.out.print("\t\tUser Menu");
+            System.out.print("\n************************************\n");
+            System.out.println("\tWelcome: " + user.login);
+            displayTransactionMenu();
+            displayTrade();
+            displayTransactionFile();
+            displayUserDatabaseFile();
+            displayUserListSortedByLogin();
+            displayUserListSortedByName();
+            displayUserListSortedByUserId();
+        } else {
+            System.out.println("User: " + user.login + " doesn't have an access to User Menu");
+        }
     }
 
     public void displayUser () throws IOException {

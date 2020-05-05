@@ -154,7 +154,7 @@ public class Helper {
         return userList;
     }
 
-    public boolean loginMenu (String inputLogin, String inputPass) {
+    public boolean loginChecker(String inputLogin, String inputPass) {
         Path pathToFile = Paths.get(System.getProperty("users.database"));
         boolean login = false;
 
@@ -166,7 +166,6 @@ public class Helper {
                 User user = createUser(attributes);
 
                 if (user.login.equals(inputLogin) && user.password.equals(inputPass)) {
-                    System.out.print("\nLogin accepted\n");
                     login = true;
                     break;
                 }
@@ -180,7 +179,7 @@ public class Helper {
         return login;
     }
 
-    public void userListSortedByUserId() throws IOException {
+    public void userListSortedByUserId() {
         List<User> userId = readUserDatabaseFile();
         userId.sort( Comparator.comparing(user -> user.userId) );
 
@@ -191,7 +190,7 @@ public class Helper {
         }
     }
 
-    public void userListSortedByUserName() throws IOException {
+    public void userListSortedByUserName() {
         List<User> userName = readUserDatabaseFile();
         userName.sort( Comparator.comparing(user -> user.name) );
 

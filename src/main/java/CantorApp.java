@@ -23,7 +23,8 @@ public class CantorApp {
 //        display.displayUserListSortedByLogin();
 //        display.displayUserListSortedByName();
 //        display.displayUserListSortedByUserId();
-        display.displayLoginMenu();
+//        display.displayLoginMenu();
+        display.displayUserMenu();
 //        display.displayTest();
     }
 }
