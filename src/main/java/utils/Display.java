@@ -126,14 +126,16 @@ public class Display {
             System.out.print("\t\t\tUser Menu");
             System.out.print("\n************************************\n");
             System.out.print("\t\tWelcome: " + user.login);
-            System.out.print("\n1. Check rates");
-            System.out.print("\n2. Transaction");
-            System.out.print("\n3. Display Transaction's Database");
-            System.out.print("\n4. Display Users' Database");
+            System.out.print("\n1. Transaction");
+            System.out.print("\n2. Display Transaction's Database");
+            System.out.print("\n3. Display Users' Database");
+            System.out.print("\n4. Display Users' sorted by ID");
             System.out.print("\n5. Display Users' sorted by Login");
             System.out.print("\n6. Display Users' sorted by Name");
-            System.out.print("\n7. Display Users' sorted by User ID");
-            System.out.print("\n9. <- Back Menu");
+            System.out.print("\n7. Display Users' sorted by Surname");
+            System.out.print("\n8. Display Users' sorted by Email Address");
+            System.out.print("\n9. Display Users' sorted by Creation date");
+            System.out.print("\n10. <- Back Menu");
             System.out.print("\n************************************\n");
     }
 
@@ -144,7 +146,7 @@ public class Display {
         helper.readData();
     }
 
-    public void displayUserDatabaseFile() throws IOException {
+    public void displayUserDatabaseFile() {
         System.out.print("\n************************************\n");
         System.out.print("\t\tUsers Database file");
         System.out.print("\n************************************\n");
@@ -157,25 +159,46 @@ public class Display {
         }
     }
 
-    public void displayUserListSortedByUserId() throws IOException {
+    public void displayUserListSortedById() {
         System.out.print("\n************************************\n");
         System.out.print("\t\tUsers List Sorted by User ID");
         System.out.print("\n************************************\n");
-        database.userListSortedByUserId();
+        database.userListSortedById();
     }
 
-    public void displayUserListSortedByName() throws IOException {
-        System.out.print("\n************************************\n");
-        System.out.print("\t\tUsers List Sorted by Name");
-        System.out.print("\n************************************\n");
-        database.userListSortedByUserName();
-    }
-
-    public void displayUserListSortedByLogin() throws IOException {
+    public void displayUserListSortedByLogin() {
         System.out.print("\n************************************\n");
         System.out.print("\t\tUsers List Sorted by Login");
         System.out.print("\n************************************\n");
         database.userListSortedByLogin();
+    }
+
+    public void displayUserListSortedByName() {
+        System.out.print("\n************************************\n");
+        System.out.print("\t\tUsers List Sorted by Name");
+        System.out.print("\n************************************\n");
+        database.userListSortedByName();
+    }
+
+    public void displayUserListSortedBySurname() {
+        System.out.print("\n************************************\n");
+        System.out.print("\t\tUsers List Sorted by Surname");
+        System.out.print("\n************************************\n");
+        database.userListSortedBySurname();
+    }
+
+    public void displayUserListSortedByEmailAddress() {
+        System.out.print("\n************************************\n");
+        System.out.print("\t\tUsers List Sorted by Email Address");
+        System.out.print("\n************************************\n");
+        database.userListSortedByEmailAddress();
+    }
+
+    public void displayUserListSortedByCreationDate() {
+        System.out.print("\n************************************\n");
+        System.out.print("\t\tUsers List Sorted by Creation Date");
+        System.out.print("\n************************************\n");
+        database.userListSortedByCreationDate();
     }
 
     public void displayTest() throws IOException {

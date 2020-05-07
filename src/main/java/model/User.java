@@ -31,13 +31,6 @@ public class User {
     }
 
     public User() {
-        this.login = getUserLogin();
-        this.name = getUserName();
-        this.surname = getUserSurname();
-        this.password = getUserPassword();
-        this.emailAddress = getEmailAddress();
-        this.creationDate = getCreationDate();
-        this.userId = getUserId();
     }
 
     public void setUserLogin () {

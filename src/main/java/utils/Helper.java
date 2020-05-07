@@ -54,6 +54,7 @@ public class Helper {
             //todo zmien na duze albo male znaki zeby wszystko zamienialo
             currency1 = scanner.nextLine();
         }
+        //todo usunac petle do while
         while (!"EUR".equals(currency1) && !"USD".equals(currency1)&& !"GBP".equals(currency1)&& !"PLN".equals(currency1));
         tradeModel.currency1 = currency1;
     }
@@ -69,6 +70,7 @@ public class Helper {
             //todo zmien na duze albo male znaki zeby wszystko zamienialo
             currency2 = scanner.nextLine();
         }
+        //todo usunac petle do while
         while (!"EUR".equals(currency2) && !"USD".equals(currency2)&& !"GBP".equals(currency2)&& !"PLN".equals(currency2));
         tradeModel.currency2 = currency2;
     }

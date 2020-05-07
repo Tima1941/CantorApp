@@ -1,17 +1,11 @@
 package utils;
 
 import model.User;
-
-import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Scanner;
 
 public class Database {
 
@@ -24,54 +18,45 @@ public class Database {
     }
 
     static List<User> readUserDatabaseFile() {
-        Path pathToFile = Paths.get(System.getProperty("users.database"));
         List<User> userList = new ArrayList<>();
 
-        // create an instance of BufferedReader using try with resource, Java 7 feature to close resources
-        try (BufferedReader br = Files.newBufferedReader(pathToFile)) {
-
-            // read the first line from the text file
-            String line = br.readLine();
-
-            // loop until all lines are read
-            while (line != null) {
-                // use string.split to load a string array with the values from each line of the file, using a comma as the delimiter
-                String[] attributes = line.split(", ");
+        try {
+            File myObj = new File(System.getProperty("users.database"));
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String[] attributes = data.split(", ");
                 User user = createUser(attributes);
-
-                // adding book into ArrayList
                 userList.add(user);
-                // read next line before looping // if end of file reached,
-                // line would be null
-
-                line = br.readLine();
             }
-        } catch (IOException ioe)
-        { ioe.printStackTrace(); }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
         return userList;
     }
 
     public boolean loginChecker(String inputLogin, String inputPass) {
-        Path pathToFile = Paths.get(System.getProperty("users.database"));
         boolean login = false;
 
-        try (BufferedReader br = Files.newBufferedReader(pathToFile)) {
-            String line = br.readLine();
-
-            while (line != null) {
-                String[] attributes = line.split(", ");
+        try {
+            File myObj = new File(System.getProperty("users.database"));
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String[] attributes = data.split(", ");
                 User user = createUser(attributes);
-
                 if (user.login.equals(inputLogin) && user.password.equals(inputPass)) {
                     login = true;
                     break;
                 }
-
-                line = br.readLine();
             }
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
 
         return login;
@@ -90,7 +75,7 @@ public class Database {
         return new User(userId, login, name, surname, password, emailAddress, creationDate);
     }
 
-    public void userListSortedByUserId() {
+    public void userListSortedById() {
         List<User> userId = readUserDatabaseFile();
         userId.sort( Comparator.comparing(user -> user.userId) );
 
@@ -112,13 +97,46 @@ public class Database {
         }
     }
 
-    public void userListSortedByUserName() {
+    public void userListSortedByName() {
         List<User> userName = readUserDatabaseFile();
         userName.sort( Comparator.comparing(user -> user.name) );
 
         int k = 1;
         for (int i = 0; i < userName.size(); i++) {
             System.out.println("ID: " + k + ", " + userName.get(i));
+            k++;
+        }
+    }
+
+    public void userListSortedBySurname() {
+        List<User> userSurname = readUserDatabaseFile();
+        userSurname.sort( Comparator.comparing(user -> user.surname) );
+
+        int k = 1;
+        for (int i = 0; i < userSurname.size(); i++) {
+            System.out.println("ID: " + k + ", " + userSurname.get(i));
+            k++;
+        }
+    }
+
+    public void userListSortedByEmailAddress() {
+        List<User> emailAddress = readUserDatabaseFile();
+        emailAddress.sort( Comparator.comparing(user -> user.emailAddress) );
+
+        int k = 1;
+        for (int i = 0; i < emailAddress.size(); i++) {
+            System.out.println("ID: " + k + ", " + emailAddress.get(i));
+            k++;
+        }
+    }
+
+    public void userListSortedByCreationDate() {
+        List<User> creationDate = readUserDatabaseFile();
+        creationDate.sort( Comparator.comparing(user -> user.creationDate) );
+
+        int k = 1;
+        for (int i = 0; i < creationDate.size(); i++) {
+            System.out.println("ID: " + k + ", " + creationDate.get(i));
             k++;
         }
     }
