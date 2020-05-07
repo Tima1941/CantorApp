@@ -41,14 +41,16 @@ public class Display {
         user.setEmailAddress();
 
         user.setUserId();
+        user.setDataCreation();
         helper.saveUserInDatabase(user);
 
         System.out.print("\n*********** Created User ***********\n");
-        System.out.print("Login:\t\t\t" + user.getUserLogin() +
+        System.out.print("User ID:\t\t" + user.getUserId() +
+                "\nLogin:\t\t\t" + user.getUserLogin() +
                 "\nUser Name:\t\t" + user.getUserName() +
                 "\nUser Surname:\t" + user.getUserSurname() +
                 "\nEmail Address:\t" + user.getEmailAddress() +
-                "\nUser ID:\t\t" + user.getUserId());
+                "\nCreation Date:\t" + user.getCreationDate());
         System.out.print("\n************************************\n");
     }
 
@@ -71,21 +73,6 @@ public class Display {
 
         return helper.loginChecker(user.login, user.password);
     }
-
-//    public void displayTrade () throws IOException {
-//        System.out.println("\n********** Transaction data **********");
-//        String tradeContent =
-//                "TradeDate: " + helper.getTradeDate() +
-//                        "\nCurrency1:\t" + helper.getCurrency1() +
-//                        "\nCurrency2:\t" + helper.getCurrency2() +
-//                        "\nAmount:\t" + helper.getAmount() +
-//                        "\nRate:\t" + helper.getRate() +
-//                        "\nValue:\t" + helper.getCalculate();
-//        System.out.println(tradeContent);
-//        System.out.print("************************************\n");
-//
-//        helper.saveTransaction();
-//    }
 
     public void displayCheckRates () throws IOException {
         System.out.print("\n************************************\n");

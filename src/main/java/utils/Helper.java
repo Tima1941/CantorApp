@@ -117,7 +117,7 @@ public class Helper {
     public void saveUserInDatabase(User user) throws IOException {
         FileWriter fileWriter = new FileWriter(System.getProperty("users.database"), true);
         PrintWriter printWriter = new PrintWriter(fileWriter);
-        printWriter.print(user.login + ", " + user.name + ", " + user.surname + ", " + user.password + ", " + user.emailAddress + ", " + user.userId + "\n");
+        printWriter.print(user.userId + ", " + user.login + ", " + user.name + ", " + user.surname + ", " + user.password + ", " + user.emailAddress + ", " + user.creationDate + "\n");
         printWriter.close();
     }
 
@@ -210,14 +210,15 @@ public class Helper {
     }
 
     private static User createUser(String[] metadata) {
-        String login = metadata[0];
-        String name = metadata[1];
-        String surname = metadata[2];
-        String password = metadata[3];
-        String emailAddress = metadata[4];
-        int userId = Integer.parseInt(metadata[5]);
+        int userId = Integer.parseInt(metadata[0]);
+        String login = metadata[1];
+        String name = metadata[2];
+        String surname = metadata[3];
+        String password = metadata[4];
+        String emailAddress = metadata[5];
+        String creationDate = metadata[6];
 
         // create and return user of this metadata
-        return new User(login, name, surname, password, emailAddress, userId);
+        return new User(userId, login, name, surname, password, emailAddress, creationDate);
     }
 }

@@ -3,7 +3,7 @@ import utils.ConfigurationLoader;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class CantorApp {
+public class CantorConsole {
     public static Display display = new Display();
     public static ConfigurationLoader configurationLoader = new ConfigurationLoader();
 
