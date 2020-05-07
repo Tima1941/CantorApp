@@ -221,22 +221,3 @@ public class Helper {
         return new User(login, name, surname, password, emailAddress, userId);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
