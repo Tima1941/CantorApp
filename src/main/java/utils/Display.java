@@ -7,6 +7,7 @@ import java.util.List;
 public class Display {
     public static Helper helper = new Helper();
     public static User user = new User();
+    public static Database database = new Database();
 
     public void displayMainMenu() {
         System.out.print("\n************************************\n");
@@ -42,7 +43,7 @@ public class Display {
 
         user.setUserId();
         user.setDataCreation();
-        helper.saveUserInDatabase(user);
+        database.saveUserInDatabase(user);
 
         System.out.print("\n*********** Created User ***********\n");
         System.out.print("User ID:\t\t" + user.getUserId() +
@@ -65,13 +66,13 @@ public class Display {
         System.out.print("Enter User Password: ");
         user.setUserPassword();
 
-        if (helper.loginChecker(user.login, user.password) == true) {
+        if (database.loginChecker(user.login, user.password) == true) {
             System.out.println("Login accepted");
         } else {
             System.out.println("Wrong login/password");
         }
 
-        return helper.loginChecker(user.login, user.password);
+        return database.loginChecker(user.login, user.password);
     }
 
     public void displayCheckRates () throws IOException {
@@ -147,7 +148,7 @@ public class Display {
         System.out.print("\n************************************\n");
         System.out.print("\t\tUsers Database file");
         System.out.print("\n************************************\n");
-        List<User> usersList = helper.readUserDatabaseFile();
+        List<User> usersList = database.readUserDatabaseFile();
 
         int k = 1;
         for (int i = 0; i < usersList.size(); i++) {
@@ -160,21 +161,21 @@ public class Display {
         System.out.print("\n************************************\n");
         System.out.print("\t\tUsers List Sorted by User ID");
         System.out.print("\n************************************\n");
-        helper.userListSortedByUserId();
+        database.userListSortedByUserId();
     }
 
     public void displayUserListSortedByName() throws IOException {
         System.out.print("\n************************************\n");
         System.out.print("\t\tUsers List Sorted by Name");
         System.out.print("\n************************************\n");
-        helper.userListSortedByUserName();
+        database.userListSortedByUserName();
     }
 
     public void displayUserListSortedByLogin() throws IOException {
         System.out.print("\n************************************\n");
         System.out.print("\t\tUsers List Sorted by Login");
         System.out.print("\n************************************\n");
-        helper.userListSortedByLogin();
+        database.userListSortedByLogin();
     }
 
     public void displayTest() throws IOException {
