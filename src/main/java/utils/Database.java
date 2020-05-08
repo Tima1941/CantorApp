@@ -1,5 +1,6 @@
 package utils;
 
+import model.Trade;
 import model.User;
 import java.io.*;
 import java.util.ArrayList;
@@ -8,9 +9,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Database {
-
+    //For User class
     public void saveUserInDatabase(User user) throws IOException {
-        FileWriter fileWriter = new FileWriter(System.getProperty("users.database"), true);
+        FileWriter fileWriter = new FileWriter(System.getProperty("user.database"), true);
         PrintWriter printWriter = new PrintWriter(fileWriter);
         printWriter.print(user.userId + ", " + user.login + ", " + user.name + ", " + user.surname + ", "
                             + user.password + ", " + user.emailAddress + ", " + user.creationDate + "\n");
@@ -21,7 +22,7 @@ public class Database {
         List<User> userList = new ArrayList<>();
 
         try {
-            File myObj = new File(System.getProperty("users.database"));
+            File myObj = new File(System.getProperty("user.database"));
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
@@ -42,7 +43,7 @@ public class Database {
         boolean login = false;
 
         try {
-            File myObj = new File(System.getProperty("users.database"));
+            File myObj = new File(System.getProperty("user.database"));
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
@@ -139,5 +140,46 @@ public class Database {
             System.out.println("ID: " + k + ", " + creationDate.get(i));
             k++;
         }
+    }
+    //    For Trade class
+    public void saveTradeInDatabase(Trade trade) throws IOException {
+        FileWriter fileWriter = new FileWriter(System.getProperty("trade.database"), true);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        printWriter.print(trade.amount + ", " + trade.currency1 + ", " + trade.currency2 + ", " +
+                            trade.rate + ", " + trade.value + ", " + trade.tradeDate + "\n");
+        printWriter.close();
+    }
+
+    public static List<Trade> readTradeDatabaseFile() {
+        List<Trade> tradeList = new ArrayList<>();
+
+        try {
+            File myObj = new File(System.getProperty("trade.database"));
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String[] attributes = data.split(", ");
+                Trade trade = createTrade(attributes);
+                tradeList.add(trade);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+        return tradeList;
+    }
+
+    private static Trade createTrade(String[] metadata) {
+        double amount = Double.parseDouble(metadata[0]);
+        String currency1 = metadata[1];
+        String currency2 = metadata[2];
+        double rate = Double.parseDouble(metadata[3]);
+        double value = Double.parseDouble(metadata[4]);
+        String tradeDate = metadata[5];
+
+        // create and return trade of this metadata
+        return new Trade(amount, currency1, currency2, rate, value, tradeDate);
     }
 }

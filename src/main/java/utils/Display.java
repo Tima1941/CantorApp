@@ -1,12 +1,14 @@
 package utils;
 
+import model.Trade;
 import model.User;
 import java.io.IOException;
 import java.util.List;
 
 public class Display {
-    public static Helper helper = new Helper();
+//    public static Helper trade = new Helper();
     public static User user = new User();
+    public static Trade trade = new Trade();
     public static Database database = new Database();
 
     public void displayMainMenu() {
@@ -79,17 +81,17 @@ public class Display {
         System.out.print("\n************************************\n");
         System.out.print("\t\t\tCheck Rates");
         System.out.print("\n************************************\n");
-        helper.setTradeDate();
-        System.out.print("Today is: " + helper.getTradeDate());
+        trade.setTradeDate();
+        System.out.print("Today is: " + trade.getTradeDate());
 
         System.out.println("\nEnter currency1: ");
-        helper.setCurrency1();
+        trade.setCurrency1();
 
         System.out.println("Enter currency2: ");
-        helper.setCurrency2();
+        trade.setCurrency2();
 
-        helper.setRate(helper.getCurrency1(), helper.getCurrency2());
-        System.out.println("Rate: " + helper.getRate());
+        trade.setRate(trade.getCurrency1(), trade.getCurrency2());
+        System.out.println("Rate: " + trade.getRate());
     }
 
     public void displayTransaction() throws IOException {
@@ -98,26 +100,26 @@ public class Display {
         System.out.print("\n************************************\n");
 
         System.out.print("Enter currency1: ");
-        helper.setCurrency1();
+        trade.setCurrency1();
 
         System.out.print("Enter currency2: ");
-        helper.setCurrency2();
+        trade.setCurrency2();
 
         System.out.print("Enter amount: ");
-        helper.setAmount();
+        trade.setAmount();
 
-        helper.setRate(helper.getCurrency1(), helper.getCurrency2());
-        helper.setCalculate(helper.getRate(), helper.getAmount());
-        helper.setTradeDate();
-        helper.saveTransaction();
+        trade.setRate(trade.getCurrency1(), trade.getCurrency2());
+        trade.setValue(trade.getRate(), trade.getAmount());
+        trade.setTradeDate();
+        database.saveTradeInDatabase(trade);
 
         System.out.print("\n********* Transaction data *********\n");
-        System.out.print("TradeDate: " + helper.getTradeDate() +
-                        "\nCurrency1:\t" + helper.getCurrency1() +
-                        "\nCurrency2:\t" + helper.getCurrency2() +
-                        "\nAmount:\t" + helper.getAmount() +
-                        "\nRate:\t" + helper.getRate() +
-                        "\nValue:\t" + helper.getCalculate());
+        System.out.print("TradeDate: " + trade.getTradeDate() +
+                        "\nCurrency1:\t" + trade.getCurrency1() +
+                        "\nCurrency2:\t" + trade.getCurrency2() +
+                        "\nAmount:\t" + trade.getAmount() +
+                        "\nRate:\t" + trade.getRate() +
+                        "\nValue:\t" + trade.getValue());
         System.out.print("\n************************************\n");
     }
 
@@ -127,8 +129,8 @@ public class Display {
             System.out.print("\n************************************\n");
             System.out.print("\t\tWelcome: " + user.login);
             System.out.print("\n1. Transaction");
-            System.out.print("\n2. Display Transaction's Database");
-            System.out.print("\n3. Display Users' Database");
+            System.out.print("\n2. Display Trade's Database");
+            System.out.print("\n3. Display User's Database");
             System.out.print("\n4. Display Users' sorted by ID");
             System.out.print("\n5. Display Users' sorted by Login");
             System.out.print("\n6. Display Users' sorted by Name");
@@ -139,11 +141,17 @@ public class Display {
             System.out.print("\n************************************\n");
     }
 
-    public void displayTransactionFile () {
+    public void displayTradeFile() {
         System.out.print("\n************************************\n");
-        System.out.print("\t\tTransaction Database file");
+        System.out.print("\t\tTrade Database file");
         System.out.print("\n************************************\n");
-        helper.readData();
+        List<Trade> tradeList = database.readTradeDatabaseFile();
+
+        int k = 1;
+        for (int i = 0; i < tradeList.size(); i++) {
+            System.out.println("ID: " + k + ", " + tradeList.get(i));
+            k++;
+        }
     }
 
     public void displayUserDatabaseFile() {
@@ -201,10 +209,10 @@ public class Display {
         database.userListSortedByCreationDate();
     }
 
-    public void displayTest() throws IOException {
+    public void displayTest() {
         System.out.print("\n************************************\n");
         System.out.print("\t\tTest");
         System.out.print("\n************************************\n");
-        helper.test();
+
     }
 }

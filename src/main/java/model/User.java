@@ -18,7 +18,6 @@ public class User {
     public String password;
     public String creationDate;
     public int userId;
-    //todo add use function (cantor worker/boss/client)
 
     public User(int userId, String login, String name, String surname, String password, String emailAddress, String creationDate) {
         this.login = login;
@@ -90,7 +89,7 @@ public class User {
 
     public void setUserId (){
         Random rand = new Random();
-        int userIdGenerated = rand.nextInt(1000);
+        int userIdGenerated = rand.nextInt(10000);
         this.userId = userIdGenerated;
     }
 
@@ -98,7 +97,6 @@ public class User {
         return userId;
     }
 
-//    @Override
     public String toString(){
         return "User ID: " + userId + ", Login: " + login +
                 ", Name: " + name + ", Surname: " + surname +

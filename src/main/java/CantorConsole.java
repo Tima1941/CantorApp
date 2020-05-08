@@ -34,7 +34,7 @@ public class CantorConsole {
                                     display.displayTransaction();
                                     break;
                                 case 2:
-                                    display.displayTransactionFile();
+                                    display.displayTradeFile();
                                     break;
                                 case 3:
                                     display.displayUserDatabaseFile();
