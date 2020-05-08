@@ -182,4 +182,70 @@ public class Database {
         // create and return trade of this metadata
         return new Trade(amount, currency1, currency2, rate, value, tradeDate);
     }
+
+    public void tradeListSortedByCurrency1() {
+        List<Trade> tradeCurrency1 = readTradeDatabaseFile();
+        tradeCurrency1.sort( Comparator.comparing(trade -> trade.currency1) );
+
+        int k = 1;
+        for (int i = 0; i < tradeCurrency1.size(); i++) {
+            System.out.println("ID: " + k + ", " + tradeCurrency1.get(i));
+            k++;
+        }
+    }
+
+    public void tradeListSortedByCurrency2() {
+        List<Trade> tradeCurrency2 = readTradeDatabaseFile();
+        tradeCurrency2.sort( Comparator.comparing(trade -> trade.currency2) );
+
+        int k = 1;
+        for (int i = 0; i < tradeCurrency2.size(); i++) {
+            System.out.println("ID: " + k + ", " + tradeCurrency2.get(i));
+            k++;
+        }
+    }
+
+    public void tradeListSortedByAmount() {
+        List<Trade> tradeAmount = readTradeDatabaseFile();
+        tradeAmount.sort( Comparator.comparing(trade -> trade.amount) );
+
+        int k = 1;
+        for (int i = 0; i < tradeAmount.size(); i++) {
+            System.out.println("ID: " + k + ", " + tradeAmount.get(i));
+            k++;
+        }
+    }
+
+    public void tradeListSortedByRate() {
+        List<Trade> tradeRate = readTradeDatabaseFile();
+        tradeRate.sort( Comparator.comparing(trade -> trade.rate) );
+
+        int k = 1;
+        for (int i = 0; i < tradeRate.size(); i++) {
+            System.out.println("ID: " + k + ", " + tradeRate.get(i));
+            k++;
+        }
+    }
+
+    public void tradeListSortedByValue() {
+        List<Trade> tradeValue = readTradeDatabaseFile();
+        tradeValue.sort( Comparator.comparing(trade -> trade.value) );
+
+        int k = 1;
+        for (int i = 0; i < tradeValue.size(); i++) {
+            System.out.println("ID: " + k + ", " + tradeValue.get(i));
+            k++;
+        }
+    }
+
+    public void tradeListSortedByTradeDate() {
+        List<Trade> tradeDate = readTradeDatabaseFile();
+        tradeDate.sort( Comparator.comparing(trade -> trade.tradeDate) );
+
+        int k = 1;
+        for (int i = 0; i < tradeDate.size(); i++) {
+            System.out.println("ID: " + k + ", " + tradeDate.get(i));
+            k++;
+        }
+    }
 }

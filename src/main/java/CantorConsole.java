@@ -57,8 +57,8 @@ public class CantorConsole {
                                 case 9:
                                     display.displayUserListSortedByCreationDate();
                                     break;
-                                }
-                            } while (value!=10);
+                            }
+                        } while (value!=10);
                     }
                     break;
                 case 3:
