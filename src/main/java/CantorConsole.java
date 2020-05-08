@@ -3,7 +3,7 @@ import utils.ConfigurationLoader;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class CantorApp {
+public class CantorConsole {
     public static Display display = new Display();
     public static ConfigurationLoader configurationLoader = new ConfigurationLoader();
 
@@ -31,16 +31,16 @@ public class CantorApp {
 
                             switch (value) {
                                 case 1:
-                                    display.displayCheckRates();
-                                    break;
-                                case 2:
                                     display.displayTransaction();
                                     break;
-                                case 3:
+                                case 2:
                                     display.displayTransactionFile();
                                     break;
-                                case 4:
+                                case 3:
                                     display.displayUserDatabaseFile();
+                                    break;
+                                case 4:
+                                    display.displayUserListSortedById();
                                     break;
                                 case 5:
                                     display.displayUserListSortedByLogin();
@@ -49,10 +49,16 @@ public class CantorApp {
                                     display.displayUserListSortedByName();
                                     break;
                                 case 7:
-                                    display.displayUserListSortedByUserId();
+                                    display.displayUserListSortedBySurname();
+                                    break;
+                                case 8:
+                                    display.displayUserListSortedByEmailAddress();
+                                    break;
+                                case 9:
+                                    display.displayUserListSortedByCreationDate();
                                     break;
                                 }
-                            } while (value!=9);
+                            } while (value!=10);
                     }
                     break;
                 case 3:

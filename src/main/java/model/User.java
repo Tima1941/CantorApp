@@ -1,5 +1,8 @@
 package model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -13,26 +16,21 @@ public class User {
     public String surname;
     public String emailAddress;
     public String password;
+    public String creationDate;
     public int userId;
-    //todo add user date creation
     //todo add use function (cantor worker/boss/client)
 
-    public User(String login, String name, String surname, String password, String emailAddress, int userId) {
+    public User(int userId, String login, String name, String surname, String password, String emailAddress, String creationDate) {
         this.login = login;
         this.name = name;
         this.surname = surname;
         this.password = password;
         this.emailAddress = emailAddress;
+        this.creationDate = creationDate;
         this.userId = userId;
     }
 
     public User() {
-        this.login = getUserLogin();
-        this.name = getUserName();
-        this.surname = getUserSurname();
-        this.password = getUserPassword();
-        this.emailAddress = getEmailAddress();
-        this.userId = getUserId();
     }
 
     public void setUserLogin () {
@@ -80,6 +78,16 @@ public class User {
         return emailAddress;
     }
 
+    public void setDataCreation (){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        this.creationDate = dateFormat.format(date);
+    }
+
+    public String getCreationDate(){
+        return creationDate;
+    }
+
     public void setUserId (){
         Random rand = new Random();
         int userIdGenerated = rand.nextInt(1000);
@@ -90,8 +98,11 @@ public class User {
         return userId;
     }
 
+//    @Override
     public String toString(){
-        return "Login: " + login + ", Name: " + name + ", Surname: " + surname + ", Password: " + password + ", Email Address: " + emailAddress + ", User ID: " + userId;
+        return "User ID: " + userId + ", Login: " + login +
+                ", Name: " + name + ", Surname: " + surname +
+                ", Password: " + password + ", Email Address: " + emailAddress +
+                ", Creation Date: " + creationDate;
     }
 }
-//todo add password function / improve user id generation / make class bigger

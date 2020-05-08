@@ -1,13 +1,13 @@
 package utils;
 
 import model.User;
-
 import java.io.IOException;
 import java.util.List;
 
 public class Display {
     public static Helper helper = new Helper();
     public static User user = new User();
+    public static Database database = new Database();
 
     public void displayMainMenu() {
         System.out.print("\n************************************\n");
@@ -42,14 +42,16 @@ public class Display {
         user.setEmailAddress();
 
         user.setUserId();
-        helper.saveUserInDatabase(user);
+        user.setDataCreation();
+        database.saveUserInDatabase(user);
 
         System.out.print("\n*********** Created User ***********\n");
-        System.out.print("Login:\t\t\t" + user.getUserLogin() +
+        System.out.print("User ID:\t\t" + user.getUserId() +
+                "\nLogin:\t\t\t" + user.getUserLogin() +
                 "\nUser Name:\t\t" + user.getUserName() +
                 "\nUser Surname:\t" + user.getUserSurname() +
                 "\nEmail Address:\t" + user.getEmailAddress() +
-                "\nUser ID:\t\t" + user.getUserId());
+                "\nCreation Date:\t" + user.getCreationDate());
         System.out.print("\n************************************\n");
     }
 
@@ -64,29 +66,14 @@ public class Display {
         System.out.print("Enter User Password: ");
         user.setUserPassword();
 
-        if (helper.loginChecker(user.login, user.password) == true) {
+        if (database.loginChecker(user.login, user.password) == true) {
             System.out.println("Login accepted");
         } else {
             System.out.println("Wrong login/password");
         }
 
-        return helper.loginChecker(user.login, user.password);
+        return database.loginChecker(user.login, user.password);
     }
-
-//    public void displayTrade () throws IOException {
-//        System.out.println("\n********** Transaction data **********");
-//        String tradeContent =
-//                "TradeDate: " + helper.getTradeDate() +
-//                        "\nCurrency1:\t" + helper.getCurrency1() +
-//                        "\nCurrency2:\t" + helper.getCurrency2() +
-//                        "\nAmount:\t" + helper.getAmount() +
-//                        "\nRate:\t" + helper.getRate() +
-//                        "\nValue:\t" + helper.getCalculate();
-//        System.out.println(tradeContent);
-//        System.out.print("************************************\n");
-//
-//        helper.saveTransaction();
-//    }
 
     public void displayCheckRates () throws IOException {
         System.out.print("\n************************************\n");
@@ -139,14 +126,16 @@ public class Display {
             System.out.print("\t\t\tUser Menu");
             System.out.print("\n************************************\n");
             System.out.print("\t\tWelcome: " + user.login);
-            System.out.print("\n1. Check rates");
-            System.out.print("\n2. Transaction");
-            System.out.print("\n3. Display Transaction's Database");
-            System.out.print("\n4. Display Users' Database");
+            System.out.print("\n1. Transaction");
+            System.out.print("\n2. Display Transaction's Database");
+            System.out.print("\n3. Display Users' Database");
+            System.out.print("\n4. Display Users' sorted by ID");
             System.out.print("\n5. Display Users' sorted by Login");
             System.out.print("\n6. Display Users' sorted by Name");
-            System.out.print("\n7. Display Users' sorted by User ID");
-            System.out.print("\n9. <- Back Menu");
+            System.out.print("\n7. Display Users' sorted by Surname");
+            System.out.print("\n8. Display Users' sorted by Email Address");
+            System.out.print("\n9. Display Users' sorted by Creation date");
+            System.out.print("\n10. <- Back Menu");
             System.out.print("\n************************************\n");
     }
 
@@ -157,11 +146,11 @@ public class Display {
         helper.readData();
     }
 
-    public void displayUserDatabaseFile() throws IOException {
+    public void displayUserDatabaseFile() {
         System.out.print("\n************************************\n");
         System.out.print("\t\tUsers Database file");
         System.out.print("\n************************************\n");
-        List<User> usersList = helper.readUserDatabaseFile();
+        List<User> usersList = database.readUserDatabaseFile();
 
         int k = 1;
         for (int i = 0; i < usersList.size(); i++) {
@@ -170,25 +159,46 @@ public class Display {
         }
     }
 
-    public void displayUserListSortedByUserId() throws IOException {
+    public void displayUserListSortedById() {
         System.out.print("\n************************************\n");
         System.out.print("\t\tUsers List Sorted by User ID");
         System.out.print("\n************************************\n");
-        helper.userListSortedByUserId();
+        database.userListSortedById();
     }
 
-    public void displayUserListSortedByName() throws IOException {
-        System.out.print("\n************************************\n");
-        System.out.print("\t\tUsers List Sorted by Name");
-        System.out.print("\n************************************\n");
-        helper.userListSortedByUserName();
-    }
-
-    public void displayUserListSortedByLogin() throws IOException {
+    public void displayUserListSortedByLogin() {
         System.out.print("\n************************************\n");
         System.out.print("\t\tUsers List Sorted by Login");
         System.out.print("\n************************************\n");
-        helper.userListSortedByLogin();
+        database.userListSortedByLogin();
+    }
+
+    public void displayUserListSortedByName() {
+        System.out.print("\n************************************\n");
+        System.out.print("\t\tUsers List Sorted by Name");
+        System.out.print("\n************************************\n");
+        database.userListSortedByName();
+    }
+
+    public void displayUserListSortedBySurname() {
+        System.out.print("\n************************************\n");
+        System.out.print("\t\tUsers List Sorted by Surname");
+        System.out.print("\n************************************\n");
+        database.userListSortedBySurname();
+    }
+
+    public void displayUserListSortedByEmailAddress() {
+        System.out.print("\n************************************\n");
+        System.out.print("\t\tUsers List Sorted by Email Address");
+        System.out.print("\n************************************\n");
+        database.userListSortedByEmailAddress();
+    }
+
+    public void displayUserListSortedByCreationDate() {
+        System.out.print("\n************************************\n");
+        System.out.print("\t\tUsers List Sorted by Creation Date");
+        System.out.print("\n************************************\n");
+        database.userListSortedByCreationDate();
     }
 
     public void displayTest() throws IOException {
