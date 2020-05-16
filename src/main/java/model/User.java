@@ -2,9 +2,11 @@ package model;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.UUID;
 
 //ciekawy projekt do podpatrzenia https://www.journaldev.com/2315/java-json-example
 //listy artyhul https://www.geeksforgeeks.org/arrays-sort-in-java-with-examples/
@@ -19,6 +21,16 @@ public class User extends BaseEntity {
 
 	public User(String login, String name, String surname, String emailAddress, String password) {
 		super();
+		this.login = login;
+		this.name = name;
+		this.surname = surname;
+		this.emailAddress = emailAddress;
+		this.password = password;
+	}
+
+	public User(UUID id, LocalDateTime createdDate, String login, String name, String surname, String emailAddress,
+			String password) {
+		super(id, createdDate);
 		this.login = login;
 		this.name = name;
 		this.surname = surname;

@@ -7,8 +7,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.UUID;
 
-public class Trade {
+public class Trade extends BaseEntity {
 	protected String currency1;
 	protected String currency2;
 	protected LocalDateTime tradeDate;
@@ -17,6 +18,16 @@ public class Trade {
 
 	public Trade(String currency1, String currency2, LocalDateTime tradeDate, double amount1, double rate) {
 		super();
+		this.currency1 = currency1;
+		this.currency2 = currency2;
+		this.tradeDate = tradeDate;
+		this.amount1 = amount1;
+
+	}
+
+	public Trade(UUID id, LocalDateTime createdDate, String currency1, String currency2, LocalDateTime tradeDate,
+			double amount1, double rate) {
+		super(id, createdDate);
 		this.currency1 = currency1;
 		this.currency2 = currency2;
 		this.tradeDate = tradeDate;
