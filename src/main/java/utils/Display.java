@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Display {
-	protected ClientService clientServices;
+	protected ClientService clientService;
 
-	public Display(ClientService clientServices) {
+	public Display(ClientService clientService) {
 		super();
-		this.clientServices = clientServices;
+		this.clientService = clientService;
 	}
 
 	public void displayMainMenu() {
@@ -25,6 +25,7 @@ public class Display {
 		System.out.print("2. Login\n");
 		System.out.print("3. Check rates\n");
 		System.out.print("4. Transaction\n");
+		System.out.print("5. List of all clients\n");
 		System.out.print("0. Exit");
 		System.out.print("\n************************************\n");
 	}
@@ -35,7 +36,7 @@ public class Display {
 		String surname;
 		String emailAddress;
 		String password;
-		
+
 		displayTitle("Register User");
 
 		login = inputValue("Enter User Login: ");
@@ -48,11 +49,21 @@ public class Display {
 
 		emailAddress = inputValue("Enter Email Address: ");
 
-		Client client = clientServices.createClient(login, name, surname, emailAddress, password);
+		Client client = clientService.createClient(login, name, surname, emailAddress, password);
 
 		System.out.print("\n*********** Created User ***********\n");
 		System.out.print(client.toString());
 		System.out.print("\n************************************\n");
+	}
+
+	public void displayAllClients() {
+		List<Client> clients = clientService.getAllClients();
+		System.out.print("\n*********** ** All Users* ************\n");
+		for (Client client : clients) {
+			System.out.print(client.toString());
+		}
+		System.out.print("\n************************************\n");
+
 	}
 
 	private void displayTitle(String title) {

@@ -28,6 +28,9 @@ public class CantorConsole {
 			case 1:
 				display.displayUserRegister();
 				break;
+			case 5:
+				display.displayAllClients();
+				break;
 			
 			}
 		} while (value != 0);

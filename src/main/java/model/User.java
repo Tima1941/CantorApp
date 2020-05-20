@@ -37,6 +37,9 @@ public class User extends BaseEntity {
 		this.emailAddress = emailAddress;
 		this.password = password;
 	}
+	public User() {
+		super();
+	}
 
 	/**
 	 * @return the login
