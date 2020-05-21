@@ -4,30 +4,73 @@ import model.Client;
 import model.Trade;
 import model.User;
 import services.ClientService;
+import services.UserService;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 
 public class Display {
 	protected ClientService clientService;
+	protected UserService userService;
+	protected User currentUser = null;
 
-	public Display(ClientService clientService) {
+	protected final int DISPLAY_WIDTH = 20;
+	protected final String DELIMITER_SYMBOL = "*";
+
+	public Display(ClientService clientService, UserService userService) {
 		super();
 		this.clientService = clientService;
+		this.userService = userService;
+	}
+
+	/**
+	 * @return the currentUser
+	 */
+	public User getCurrentUser() {
+		return currentUser;
 	}
 
 	public void displayMainMenu() {
-		System.out.print("\n************************************\n");
-		System.out.print("************   Cantor   ************");
-		System.out.print("\n************************************\n");
+
+		displayTitle("Cantor");
+
 		System.out.print("1. Register\n");
 		System.out.print("2. Login\n");
-		System.out.print("3. Check rates\n");
-		System.out.print("4. Transaction\n");
-		System.out.print("5. List of all clients\n");
+		System.out.print("9. Check rates\n");
 		System.out.print("0. Exit");
-		System.out.print("\n************************************\n");
+
+		displayDelimiter();
+	}
+
+	public void displayClientMenu() {
+
+		displayTitle("Client: " + currentUser.getLogin());
+
+		System.out.print("1. List trades\n");
+		System.out.print("2. Add trade\n");
+		System.out.print("3. My balance\n");
+		System.out.print("4. Withdrawal amount\n");// google
+		System.out.print("5. Deposit amount\n");
+
+		System.out.print("9. Check rates\n");
+		System.out.print("0. Exit");
+
+		displayDelimiter();
+	}
+
+	public void displayAdminMenu() {
+
+		displayTitle("Admin");
+
+		System.out.print("2. Check my transactions\n");
+		System.out.print("3. List of all clients\n");
+		System.out.print("9. Check rates\n");
+		System.out.print("0. Exit");
+
+		displayDelimiter();
+
 	}
 
 	public void displayUserRegister() throws IOException {
@@ -39,41 +82,103 @@ public class Display {
 
 		displayTitle("Register User");
 
-		login = inputValue("Enter User Login: ");
+		login = inputLine("Enter User Login: ");
 
-		name = inputValue("Enter User Name: ");
+		name = inputLine("Enter User Name: ");
 
-		surname = inputValue("Enter User Surname: ");
+		surname = inputLine("Enter User Surname: ");
 
-		password = inputValue("Enter User Password: ");
+		password = inputLine("Enter User Password: ");
 
-		emailAddress = inputValue("Enter Email Address: ");
+		emailAddress = inputLine("Enter Email Address: ");
 
 		Client client = clientService.createClient(login, name, surname, emailAddress, password);
 
-		System.out.print("\n*********** Created User ***********\n");
+		displayDelimiter("Created User");
 		System.out.print(client.toString());
-		System.out.print("\n************************************\n");
+		displayDelimiter();
+	}
+
+	public void displayUserLogin() throws IOException {
+		String login;
+		String password;
+
+		displayTitle("Log in");
+
+		login = inputLine("Enter User Login: ");
+
+		password = inputLine("Enter User Password: ");
+
+		currentUser = userService.logInUser(login, password);
+		if (currentUser != null) {
+			displayDelimiter("Logged in");
+			System.out.print(currentUser.toString());
+		} else {
+			displayDelimiter("Log in Failed");
+
+		}
+		displayDelimiter();
+	}
+
+	public void diplayCurrentClientTrades() {
+		Client client = (Client) currentUser;
+		displayTitle("Trades");
+		for (Trade trade : client.getTrades()) {
+			System.out.print(trade.toString());
+		}
+		displayDelimiter();
+
+	}
+
+	public void displayAddTrade() {
+		String currency1;
+		String currency2;
+		LocalDateTime tradeDate;
+		double amount1;
+		double rate;
+
+		displayTitle("Trade");
+
+		currency1 = inputLine("Enter currency1: ");
+
+		currency2 = inputLine("Enter currency2: ");
+
+		amount1 = inputDouble("Enter amount1: ");
+
+		Trade trade = clientService.createClientTrade(currency1, currency2, amount1, currentUser.getId());
+
+		displayDelimiter("Added trade");
+		System.out.print(trade.toString());
+		displayDelimiter();
 	}
 
 	public void displayAllClients() {
 		List<Client> clients = clientService.getAllClients();
-		System.out.print("\n*********** ** All Users* ************\n");
+		displayDelimiter("All Users");
 		for (Client client : clients) {
 			System.out.print(client.toString());
 		}
-		System.out.print("\n************************************\n");
+		displayDelimiter();
 
+	}
+
+	private void displayDelimiter(String text) {
+
+		System.out.print("\n" + text + "\n");
+	}
+
+	private void displayDelimiter() {
+		System.out.print("\n" + DELIMITER_SYMBOL.repeat(DISPLAY_WIDTH) + "\n");
 	}
 
 	private void displayTitle(String title) {
-		System.out.print("\n************************************\n");
+		displayDelimiter();
 		System.out.print("\t\t\t" + title);
-		System.out.print("\n************************************\n");
+		displayDelimiter();
 
 	}
 
-	private String inputValue(String label) {
+	private String inputLine(String label) {
 		String value;
 
 		System.out.print(label);
@@ -81,7 +186,16 @@ public class Display {
 		value = scan.nextLine();
 
 		return value;
+	}
 
+	private double inputDouble(String label) {
+		double value;
+
+		System.out.print(label);
+		Scanner scan = new Scanner(System.in);
+		value = scan.nextDouble();
+
+		return value;
 	}
 
 }
