@@ -46,7 +46,19 @@ public class CantorConsole {
 						case 2:
 							display.displayAddTrade();
 							break;
-						
+						case 3:
+							display.displayMyBalance();
+							break;
+						case 4:
+							display.displayWithdrawalClientBalance();
+							break;
+						case 5:
+							display.displayDepositClientBalance();
+							break;
+						case 9:
+							display.rightRate();
+							break;
+
 						}
 					} while (value != 0);
 				}
@@ -55,9 +67,13 @@ public class CantorConsole {
 			case 5:
 				display.displayAllClients();
 				break;
-
+			case 9:
+				display.rightRate();
+				break;
 			}
 		} while (value != 0);
 		scanner.close();
+
 	}
+
 }

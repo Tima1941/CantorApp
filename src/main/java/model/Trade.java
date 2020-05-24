@@ -9,9 +9,11 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Trade extends BaseEntity {
-	protected String currency1;
-	protected String currency2;
+	protected String currency1;//decrease amount of balance
+	protected String currency2;//increase amount of balance
 	protected LocalDateTime tradeDate;
 	protected double amount1;
 	protected double rate;
@@ -22,7 +24,7 @@ public class Trade extends BaseEntity {
 		this.currency2 = currency2;
 		this.tradeDate = tradeDate;
 		this.amount1 = amount1;
-
+		this.rate = rate;
 	}
 
 	public Trade(UUID id, LocalDateTime createdDate, String currency1, String currency2, LocalDateTime tradeDate,
@@ -33,6 +35,10 @@ public class Trade extends BaseEntity {
 		this.tradeDate = tradeDate;
 		this.amount1 = amount1;
 		this.rate = rate;
+	}
+
+	public Trade() {
+		super();
 	}
 
 	/**
@@ -108,7 +114,9 @@ public class Trade extends BaseEntity {
 	/**
 	 * @return the amount2
 	 */
+	@JsonIgnore
 	public double getAmount2() {
+
 		return this.amount1 * this.rate;
 	}
 
@@ -117,7 +125,5 @@ public class Trade extends BaseEntity {
 		return "Trade [currency1=" + currency1 + ", currency2=" + currency2 + ", tradeDate=" + tradeDate + ", amount1="
 				+ amount1 + ", rate=" + rate + "]";
 	}
-	
 
-	
 }

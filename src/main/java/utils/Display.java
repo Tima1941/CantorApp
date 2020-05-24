@@ -9,6 +9,7 @@ import services.UserService;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Display {
@@ -38,6 +39,7 @@ public class Display {
 
 		System.out.print("1. Register\n");
 		System.out.print("2. Login\n");
+
 		System.out.print("9. Check rates\n");
 		System.out.print("0. Exit");
 
@@ -66,6 +68,7 @@ public class Display {
 
 		System.out.print("2. Check my transactions\n");
 		System.out.print("3. List of all clients\n");
+
 		System.out.print("9. Check rates\n");
 		System.out.print("0. Exit");
 
@@ -120,6 +123,19 @@ public class Display {
 		displayDelimiter();
 	}
 
+	public void rightRate() {
+		String currency1;
+		String currency2;
+
+		displayTitle("Rate");
+
+		currency1 = inputLine("Enter currency1: ");
+		currency2 = inputLine("Enter currency2: ");
+
+		System.out.print("Your rate: " + userService.rightRate(currency1, currency2));
+		displayDelimiter();
+	}
+
 	public void diplayCurrentClientTrades() {
 		Client client = (Client) currentUser;
 		displayTitle("Trades");
@@ -149,6 +165,55 @@ public class Display {
 
 		displayDelimiter("Added trade");
 		System.out.print(trade.toString());
+		displayDelimiter();
+	}
+
+	public void displayMyBalance() {
+		Map<String, Double> balances = clientService.getClientBalances(currentUser.getId());
+		displayDelimiter(currentUser.getLogin() + "s balances");
+		for (String i : balances.keySet()) {
+			System.out.println("Currency: " + i + " rate: " + balances.get(i));
+		}
+		displayDelimiter();
+
+	}
+
+	public void displayWithdrawalClientBalance() {
+		String currency;
+		double amount;
+
+		displayTitle("Withdrawal");
+
+		currency = inputLine("Enter currency: ");
+		// TODO display new balance
+		amount = inputDouble("Enter amount: ");
+
+		if (clientService.withdrawalClientBalance(currency, amount, currentUser.getId()))
+
+		{
+			displayDelimiter("Withdrawal completed ");
+		} else {
+			displayDelimiter("Not enough money");
+		}
+
+		displayDelimiter();
+	}
+
+	public void displayDepositClientBalance() {
+		String currency;
+		double amount;
+
+		displayTitle("Deposit");
+
+		currency = inputLine("Enter currency: ");
+
+		amount = inputDouble("Enter amount: ");
+
+		clientService.depositClientBalance(currency, amount, currentUser.getId());
+//TODO display new balance
+
+		displayDelimiter("Deposit completed");
+
 		displayDelimiter();
 	}
 
